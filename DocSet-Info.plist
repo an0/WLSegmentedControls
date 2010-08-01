@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.iwonderphone.documentation.WLSegmentedControls</string>
+	<key>CFBundleName</key>
+	<string>WLSegmentedControls</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>DocSetFeedName</key>
+	<string>WLKit</string>
+	<key>DocSetPublisherIdentifier</key>
+	<string>com.iwonderphone.documentation</string>
+	<key>DocSetPublisherName</key>
+	<string>I Wonder Phone</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2010 I Wonder Phone. All rights reserved.</string>
+</dict>
+</plist>
