@@ -85,6 +85,8 @@
 	}
 	
 	_selectedSegmentIndex = index;
+	
+	[self sendActionsForControlEvents:UIControlEventValueChanged];
 }
 
 - (void)setSelectedSegmentIndice:(NSIndexSet *)indexSet {
@@ -105,6 +107,8 @@
 	
 	[_selectedSegmentIndice release];
 	_selectedSegmentIndice = [indexSet mutableCopy];
+	
+	[self sendActionsForControlEvents:UIControlEventValueChanged];
 }
 
 - (void)selectSegmentWithIndex:(NSInteger)index {
@@ -112,6 +116,8 @@
 	segmentToSelect.selected = YES;
 	[self bringSubviewToFront:segmentToSelect];
 	[_selectedSegmentIndice addIndex:index];
+	
+	[self sendActionsForControlEvents:UIControlEventValueChanged];
 }
 
 - (void)deselectSegmentWithIndex:(NSInteger)index {
@@ -119,6 +125,8 @@
 	selectedSegment.selected = NO;
 	[self sendSubviewToBack:selectedSegment];
 	[_selectedSegmentIndice removeIndex:index];
+	
+	[self sendActionsForControlEvents:UIControlEventValueChanged];
 }
 
 
@@ -137,9 +145,7 @@
 		}		
 	} else {
 		self.selectedSegmentIndex = index;
-	}
-	
-	[self sendActionsForControlEvents:UIControlEventValueChanged];
+	}	
 }
 
 
