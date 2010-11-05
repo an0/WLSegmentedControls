@@ -72,15 +72,6 @@ isLast = _isLast;
 		self.cornerRadius = 0.f;
 		
 		_style = style;
-		
-		if (_style == WLSegmentStyleHorizontal) {
-			self.hTopOuterBorderColor = [UIColor colorWithWhite:0.f alpha:0.75f];
-			self.hTopInnerBorderColor = [UIColor colorWithWhite:0.22f alpha:0.2f];
-			self.hBottomInnerBorderColor = [UIColor colorWithWhite:0.f alpha:0.4f];
-			self.hBottomOuterBorderColor = [UIColor colorWithWhite:1.f alpha:0.25f];
-			self.hOuterSideBorderColor = [UIColor colorWithWhite:0.f alpha:0.4f];
-			self.hInnerSideBorderColor = [UIColor colorWithWhite:0.f alpha:0.2f];
-		}
 	}	
 	return self;
 }
@@ -340,6 +331,16 @@ isLast = _isLast;
 		CGGradientRelease(_vOuterBorderGradient);
 		_vOuterBorderGradient = NULL;
 	}	
+	
+	if (_style == WLSegmentStyleHorizontal) {
+		UIColor *baseColor = [colors lastObject];
+		self.hTopOuterBorderColor = [[UIColor interpolatedColor:0.5f from:baseColor to:[UIColor blackColor]] transparentColor:0.7f];
+		self.hTopInnerBorderColor = [[UIColor interpolatedColor:0.1f from:baseColor to:[UIColor blackColor]] transparentColor:0.2f];
+		self.hBottomInnerBorderColor = [[UIColor interpolatedColor:0.5f from:baseColor to:[UIColor blackColor]] transparentColor:0.5f];
+		self.hBottomOuterBorderColor = [[UIColor interpolatedColor:0.75f from:baseColor to:[UIColor whiteColor]] transparentColor:0.2f];
+		self.hOuterSideBorderColor = [[UIColor interpolatedColor:0.5f from:baseColor to:[UIColor blackColor]] transparentColor:0.4f];
+		self.hInnerSideBorderColor = [[UIColor interpolatedColor:0.2f from:baseColor to:[UIColor blackColor]] transparentColor:0.7f];
+	}
 	
 	[super setNormalGradientColors:colors];
 }

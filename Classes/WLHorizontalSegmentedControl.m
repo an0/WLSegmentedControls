@@ -164,45 +164,27 @@
 	
 	// Recolor.
 	if (_tintColor) {
-		CGFloat brightness = [_tintColor brightness];
-		CGFloat saturation = [_tintColor saturation];
-		if (brightness > 0.4f) {
-			self.normalGradientColors = [NSArray arrayWithObjects:
-										 [_tintColor brighterColor:0.45f * saturation],
-										 [_tintColor brighterColor:0.09f * saturation],
-										 _tintColor,
-										 _tintColor,
-										 nil];
-			
-			UIColor *selectedBaseColor = [_tintColor darkerColor:0.20f];
-			self.selectedGradientColors = [NSArray arrayWithObjects:
-										   [selectedBaseColor brighterColor:0.45f * saturation],
-										   [selectedBaseColor brighterColor:0.09f * saturation],
-										   selectedBaseColor,
-										   selectedBaseColor,
-										   nil];			
-		} else {
-			self.normalGradientColors = [NSArray arrayWithObjects:
-										 [_tintColor brighterColor:0.45f],
-										 [_tintColor brighterColor:0.10f],
-										 _tintColor,
-										 _tintColor,
-										 nil];
-			
-			UIColor *selectedBaseColor = [_tintColor darkerColor:0.15f];
-			self.selectedGradientColors = [NSArray arrayWithObjects:
-										   [selectedBaseColor brighterColor:0.45f],
-										   [selectedBaseColor brighterColor:0.10f],
-										   selectedBaseColor,
-										   selectedBaseColor,
-										   nil];			
-		}
-
+		//		CGFloat brightness = [_tintColor brightness];
+		//		CGFloat saturation = [_tintColor saturation];
+		self.normalGradientColors = [NSArray arrayWithObjects:
+									 [_tintColor tintColor],
+									 [UIColor interpolatedColor:0.10 from:_tintColor to:[UIColor whiteColor]],
+									 _tintColor,
+									 _tintColor,
+									 nil];
+		
+		UIColor *selectedBaseColor = [UIColor interpolatedColor:0.12 from:_tintColor to:[UIColor whiteColor]];
+		self.selectedGradientColors = [NSArray arrayWithObjects:
+									   [selectedBaseColor tintColor],
+									   [UIColor interpolatedColor:0.10 from:selectedBaseColor to:[UIColor whiteColor]],
+									   selectedBaseColor,
+									   selectedBaseColor,
+									   nil];		
 	} else {
 		self.normalGradientColors = [WLHorizontalSegmentedControl defaultNormalGradientColors];
 		self.selectedGradientColors = [WLHorizontalSegmentedControl defaultSelectedGradientColors];
 	}
-
+	
 	[self tintSegments];
 }
 
