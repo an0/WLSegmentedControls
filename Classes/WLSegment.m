@@ -55,12 +55,20 @@ isLast = _isLast;
 #pragma mark -
 #pragma mark Creating, Copying, and Deallocating
 
-- (id)initWithItem:(id)item style:(WLSegmentStyle)style {
+- (id)initWithItem:(id)item selectedItem:(id)selectedItem style:(WLSegmentStyle)style tint:(BOOL)tint {
 	if ((self = [self initWithFrame:CGRectZero])) {
 		if ([item isKindOfClass:[UIImage class]]) {
 			[self setImage:item forState:UIControlStateNormal];
 		} else {
 			[self setTitle:item forState:UIControlStateNormal];
+		}
+		
+		if (selectedItem) {
+			if ([selectedItem isKindOfClass:[UIImage class]]) {
+				[self setImage:selectedItem forState:UIControlStateSelected];
+			} else {
+				[self setTitle:selectedItem forState:UIControlStateSelected];
+			}			
 		}
 		
 		self.titleLabel.font = [UIFont boldSystemFontOfSize:13.f];
@@ -72,6 +80,7 @@ isLast = _isLast;
 		self.cornerRadius = 0.f;
 		
 		_style = style;
+		_tint = tint;
 	}	
 	return self;
 }
@@ -101,6 +110,10 @@ isLast = _isLast;
 #pragma mark Drawing
 
 - (void)drawRect:(CGRect)rect {
+	if (!_tint) {
+		return;
+	}
+	
 	CGFloat width = self.bounds.size.width;
 	CGFloat height = self.bounds.size.height;
 	CGFloat left = self.bounds.origin.x;
@@ -288,8 +301,10 @@ isLast = _isLast;
 
 - (CGSize)sizeThatFits:(CGSize)size {
 	CGSize sizeThatFits = [super sizeThatFits:size];
-	// Enlarge.
-	sizeThatFits.width += 16.f;
+	if (_tint) {
+		// Enlarge.
+		sizeThatFits.width += 16.f;
+	}
 	return sizeThatFits;
 }
 
@@ -476,6 +491,17 @@ isLast = _isLast;
         CGColorSpaceRelease(space);
     }
     return _vSelectedInnerBorderGradient;
+}
+
+
+
+
+
+#pragma mark -
+#pragma mark State control
+
+- (void)setHighlighted:(BOOL)flag {
+	// Segments only have two state - normal and selected.
 }
 
 

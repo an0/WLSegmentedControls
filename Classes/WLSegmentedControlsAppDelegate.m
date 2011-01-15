@@ -38,16 +38,17 @@
 	verticalSegmentedControl.frame = CGRectMake(0, 140, 75, 216);
 	[verticalSegmentedControl release];
 	
-	WLHorizontalSegmentedControl *horizontalSegmentedControl = [[WLHorizontalSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"First", @"Second", @"Third", nil]];
+	WLHorizontalSegmentedControl *horizontalSegmentedControl = [[WLHorizontalSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:[UIImage imageNamed:@"time"], [UIImage imageNamed:@"priority"], [UIImage imageNamed:@"location"], nil] selectedItems:[NSArray arrayWithObjects:[UIImage imageNamed:@"time_active"], [UIImage imageNamed:@"priority_active"], [UIImage imageNamed:@"location_active"], nil] tint:NO];
 	horizontalSegmentedControl.allowsMultiSelection = YES;
 //	horizontalSegmentedControl.tintColor = [UIColor colorWithRed:.2 green:.0 blue:.2 alpha:1];
-	horizontalSegmentedControl.tintColor = nil;
+	horizontalSegmentedControl.tintColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
 	horizontalSegmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
     [window addSubview:horizontalSegmentedControl];
 	[horizontalSegmentedControl addTarget:self action:@selector(pickDate:) forControlEvents:UIControlEventValueChanged];
 	CGRect frame = horizontalSegmentedControl.frame;
 	frame.origin.x = 56;
 	frame.origin.y = 40;
+//	frame.size.width = 200;
 	horizontalSegmentedControl.frame = frame;
 	[horizontalSegmentedControl release];
 	

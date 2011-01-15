@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,12 +14,18 @@
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		C925494A11F81D8A00C776C9 /* WLGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C925494911F81D8A00C776C9 /* WLGradientButton.m */; };
-		C9254A1411F8482E00C776C9 /* UIView+Extenstion.m in Sources */ = {isa = PBXBuildFile; fileRef = C9254A1111F8482E00C776C9 /* UIView+Extenstion.m */; };
 		C9254A1511F8482E00C776C9 /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C9254A1311F8482E00C776C9 /* UIColor+Extension.m */; };
 		C99E6E4B11F6A05A005284C6 /* WLVerticalSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C99E6E4A11F6A05A005284C6 /* WLVerticalSegmentedControl.m */; };
 		C9A3BD7A11FE8A04004F064B /* WLHorizontalSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A3BD7911FE8A04004F064B /* WLHorizontalSegmentedControl.m */; };
 		C9A3BD7D11FE8B68004F064B /* WLSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A3BD7C11FE8B68004F064B /* WLSegmentedControl.m */; };
 		C9A3BD9111FEAEE6004F064B /* WLSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A3BD9011FEAEE6004F064B /* WLSegment.m */; };
+		C9BF555C12E14F6E00CC4A23 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BF555B12E14F6E00CC4A23 /* UIView+Extension.m */; };
+		C9BF55BE12E1581900CC4A23 /* time.png in Resources */ = {isa = PBXBuildFile; fileRef = C9BF55BD12E1581900CC4A23 /* time.png */; };
+		C9BF55C012E1582100CC4A23 /* time_active.png in Resources */ = {isa = PBXBuildFile; fileRef = C9BF55BF12E1582100CC4A23 /* time_active.png */; };
+		C9BF565012E162F300CC4A23 /* location_active.png in Resources */ = {isa = PBXBuildFile; fileRef = C9BF564C12E162F300CC4A23 /* location_active.png */; };
+		C9BF565112E162F300CC4A23 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = C9BF564D12E162F300CC4A23 /* location.png */; };
+		C9BF565212E162F300CC4A23 /* priority_active.png in Resources */ = {isa = PBXBuildFile; fileRef = C9BF564E12E162F300CC4A23 /* priority_active.png */; };
+		C9BF565312E162F300CC4A23 /* priority.png in Resources */ = {isa = PBXBuildFile; fileRef = C9BF564F12E162F300CC4A23 /* priority.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +42,6 @@
 		C925494811F81D8A00C776C9 /* WLGradientButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WLGradientButton.h; path = ../WLButtons/Classes/WLGradientButton.h; sourceTree = SOURCE_ROOT; };
 		C925494911F81D8A00C776C9 /* WLGradientButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WLGradientButton.m; path = ../WLButtons/Classes/WLGradientButton.m; sourceTree = SOURCE_ROOT; };
 		C9254A1011F8482E00C776C9 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Extension.h"; path = "../WLUIKit/Classes/UIView+Extension.h"; sourceTree = SOURCE_ROOT; };
-		C9254A1111F8482E00C776C9 /* UIView+Extenstion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Extenstion.m"; path = "../WLUIKit/Classes/UIView+Extenstion.m"; sourceTree = SOURCE_ROOT; };
 		C9254A1211F8482E00C776C9 /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Extension.h"; path = "../WLUIKit/Classes/UIColor+Extension.h"; sourceTree = SOURCE_ROOT; };
 		C9254A1311F8482E00C776C9 /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Extension.m"; path = "../WLUIKit/Classes/UIColor+Extension.m"; sourceTree = SOURCE_ROOT; };
 		C99E6E4911F6A05A005284C6 /* WLVerticalSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLVerticalSegmentedControl.h; sourceTree = "<group>"; };
@@ -47,6 +52,13 @@
 		C9A3BD7C11FE8B68004F064B /* WLSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLSegmentedControl.m; sourceTree = "<group>"; };
 		C9A3BD8F11FEAEE6004F064B /* WLSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLSegment.h; sourceTree = "<group>"; };
 		C9A3BD9011FEAEE6004F064B /* WLSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLSegment.m; sourceTree = "<group>"; };
+		C9BF555B12E14F6E00CC4A23 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Extension.m"; path = "../WLUIKit/Classes/UIView+Extension.m"; sourceTree = SOURCE_ROOT; };
+		C9BF55BD12E1581900CC4A23 /* time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time.png; sourceTree = "<group>"; };
+		C9BF55BF12E1582100CC4A23 /* time_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time_active.png; sourceTree = "<group>"; };
+		C9BF564C12E162F300CC4A23 /* location_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location_active.png; sourceTree = "<group>"; };
+		C9BF564D12E162F300CC4A23 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
+		C9BF564E12E162F300CC4A23 /* priority_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = priority_active.png; sourceTree = "<group>"; };
+		C9BF564F12E162F300CC4A23 /* priority.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = priority.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +118,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C9BF55BD12E1581900CC4A23 /* time.png */,
+				C9BF55BF12E1582100CC4A23 /* time_active.png */,
+				C9BF564F12E162F300CC4A23 /* priority.png */,
+				C9BF564E12E162F300CC4A23 /* priority_active.png */,
+				C9BF564D12E162F300CC4A23 /* location.png */,
+				C9BF564C12E162F300CC4A23 /* location_active.png */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* WLSegmentedControls-Info.plist */,
 			);
@@ -144,7 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				C9254A1011F8482E00C776C9 /* UIView+Extension.h */,
-				C9254A1111F8482E00C776C9 /* UIView+Extenstion.m */,
+				C9BF555B12E14F6E00CC4A23 /* UIView+Extension.m */,
 				C9254A1211F8482E00C776C9 /* UIColor+Extension.h */,
 				C9254A1311F8482E00C776C9 /* UIColor+Extension.m */,
 			);
@@ -193,8 +211,15 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "WLSegmentedControls" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -210,6 +235,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				C9BF55BE12E1581900CC4A23 /* time.png in Resources */,
+				C9BF55C012E1582100CC4A23 /* time_active.png in Resources */,
+				C9BF565012E162F300CC4A23 /* location_active.png in Resources */,
+				C9BF565112E162F300CC4A23 /* location.png in Resources */,
+				C9BF565212E162F300CC4A23 /* priority_active.png in Resources */,
+				C9BF565312E162F300CC4A23 /* priority.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,11 +271,11 @@
 				1D3623260D0F684500981E51 /* WLSegmentedControlsAppDelegate.m in Sources */,
 				C99E6E4B11F6A05A005284C6 /* WLVerticalSegmentedControl.m in Sources */,
 				C925494A11F81D8A00C776C9 /* WLGradientButton.m in Sources */,
-				C9254A1411F8482E00C776C9 /* UIView+Extenstion.m in Sources */,
 				C9254A1511F8482E00C776C9 /* UIColor+Extension.m in Sources */,
 				C9A3BD7A11FE8A04004F064B /* WLHorizontalSegmentedControl.m in Sources */,
 				C9A3BD7D11FE8B68004F064B /* WLSegmentedControl.m in Sources */,
 				C9A3BD9111FEAEE6004F064B /* WLSegment.m in Sources */,
+				C9BF555C12E14F6E00CC4A23 /* UIView+Extension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,7 +328,7 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -320,7 +351,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};

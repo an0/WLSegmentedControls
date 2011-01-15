@@ -31,8 +31,15 @@
     return self;
 }
 
-- (id)initWithItems:(NSArray *)items {
+- (id)initWithItems:(NSArray *)items selectedItems:(NSArray *)selectedItems tint:(BOOL)tint {
 	if ((self = [self initWithFrame:CGRectZero])) {
+		
+	}
+	return self;	
+}
+
+- (id)initWithItems:(NSArray *)items {
+	if ((self = [self initWithItems:items selectedItems:nil tint:YES])) {
 		
 	}
 	return self;
@@ -45,6 +52,42 @@
 	[_selectedSegmentIndice release];
 	
     [super dealloc];
+}
+
+
+#pragma mark -
+#pragma mark Managing Segment Content
+
+- (void)setImage:(UIImage *)image forSegmentAtIndex:(NSUInteger)segment {
+	[(WLSegment *)[_segments objectAtIndex:segment] setImage:image forState:UIControlStateNormal];
+}
+
+- (UIImage *)imageForSegmentAtIndex:(NSUInteger)segment {
+	return [(WLSegment *)[_segments objectAtIndex:segment] imageForState:UIControlStateNormal];
+}
+
+- (void)setTitle:(NSString *)title forSegmentAtIndex:(NSUInteger)segment {
+	[(WLSegment *)[_segments objectAtIndex:segment] setTitle:title forState:UIControlStateNormal];
+}
+
+- (NSString *)titleForSegmentAtIndex:(NSUInteger)segment {
+	return [(WLSegment *)[_segments objectAtIndex:segment] titleForState:UIControlStateNormal];
+}
+
+- (void)setSelectedImage:(UIImage *)image forSegmentAtIndex:(NSUInteger)segment {
+	[(WLSegment *)[_segments objectAtIndex:segment] setImage:image forState:UIControlStateSelected];
+}
+
+- (UIImage *)selectedImageForSegmentAtIndex:(NSUInteger)segment {
+	return [(WLSegment *)[_segments objectAtIndex:segment] imageForState:UIControlStateSelected];
+}
+
+- (void)setSelectedTitle:(NSString *)title forSegmentAtIndex:(NSUInteger)segment {
+	[(WLSegment *)[_segments objectAtIndex:segment] setTitle:title forState:UIControlStateSelected];
+}
+
+- (NSString *)selectedTitleForSegmentAtIndex:(NSUInteger)segment {
+	return [(WLSegment *)[_segments objectAtIndex:segment] titleForState:UIControlStateSelected];	
 }
 
 

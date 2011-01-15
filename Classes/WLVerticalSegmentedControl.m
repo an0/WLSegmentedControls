@@ -50,13 +50,15 @@
     return self;
 }
 
-- (id)initWithItems:(NSArray *)items {
-	if ((self = [super initWithItems:items])) {
+- (id)initWithItems:(NSArray *)items selectedItems:(NSArray *)selectedItems tint:(BOOL)tint {
+	if ((self = [super initWithItems:items selectedItems:selectedItems tint:tint])) {
 		CGFloat maxHeight = 0.f;
 		CGFloat maxWidth = 0.f;
 		_segments = [[NSMutableArray alloc] initWithCapacity:[items count]];
-		for (id item in items) {
-			WLSegment *segment = [[WLSegment alloc] initWithItem:item style:WLSegmentStyleVertical];
+		for (NSUInteger i = 0; i < [items count]; ++i) {
+			id item = [items objectAtIndex:i];
+			id selectedItem = [selectedItems objectAtIndex:i];
+			WLSegment *segment = [[WLSegment alloc] initWithItem:item selectedItem:selectedItem style:WLSegmentStyleVertical tint:tint];
 			segment.selectedGradientLocations = segment.normalGradientLocations = [NSArray arrayWithObjects:[NSNumber numberWithFloat:0.f], [NSNumber numberWithFloat:1.f], nil];
 			segment.contentMode = UIViewContentModeRedraw;
 			[segment sizeToFit];

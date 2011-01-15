@@ -17,6 +17,7 @@ typedef enum {
 @interface WLSegment : WLGradientButton {
 @private
 	WLSegmentStyle _style;
+	BOOL _tint;
 	
 	UIColor *_hTopOuterBorderColor;
 	UIColor *_hTopInnerBorderColor;
@@ -32,7 +33,7 @@ typedef enum {
 	BOOL _isLast;
 }
 
-- (id)initWithItem:(id)item style:(WLSegmentStyle)style;
+- (id)initWithItem:(id)item selectedItem:(id)selectedItem style:(WLSegmentStyle)style tint:(BOOL)tint;
 
 @property(nonatomic, assign) BOOL isFirst;
 @property(nonatomic, assign) BOOL isLast;
