@@ -6,6 +6,7 @@
 //  Copyright 2010 I Wonder Phone. All rights reserved.
 //
 
+#import "WLSegmentedControl+Private.h"
 #import "WLVerticalSegmentedControl.h"
 #import "UIColor+Extension.h"
 
@@ -50,15 +51,17 @@
     return self;
 }
 
-- (id)initWithItems:(NSArray *)items selectedItems:(NSArray *)selectedItems tint:(BOOL)tint {
-	if ((self = [super initWithItems:items selectedItems:selectedItems tint:tint])) {
+- (id)_initWithItems:(NSArray *)items selectedItems:(NSArray *)selectedItems backgroundImages:(NSArray *)backgroundImages selectedBackgroundImages:(NSArray *)selectedBackgroundImages tint:(BOOL)tint {
+	if ((self = [super _initWithItems:items selectedItems:selectedItems backgroundImages:backgroundImages selectedBackgroundImages:selectedBackgroundImages tint:tint])) {
 		CGFloat maxHeight = 0.f;
 		CGFloat maxWidth = 0.f;
 		_segments = [[NSMutableArray alloc] initWithCapacity:[items count]];
 		for (NSUInteger i = 0; i < [items count]; ++i) {
 			id item = [items objectAtIndex:i];
 			id selectedItem = [selectedItems objectAtIndex:i];
-			WLSegment *segment = [[WLSegment alloc] initWithItem:item selectedItem:selectedItem style:WLSegmentStyleVertical tint:tint];
+			UIImage *backgroundImage = [backgroundImages objectAtIndex:i];
+			UIImage *selectedBackgroundImage = [selectedBackgroundImages objectAtIndex:i];
+			WLSegment *segment = [[WLSegment alloc] initWithItem:item selectedItem:selectedItem backgroundImage:backgroundImage selectedBackgroundImage:selectedBackgroundImage style:WLSegmentStyleVertical tint:tint];
 			segment.selectedGradientLocations = segment.normalGradientLocations = [NSArray arrayWithObjects:[NSNumber numberWithFloat:0.f], [NSNumber numberWithFloat:1.f], nil];
 			segment.contentMode = UIViewContentModeRedraw;
 			[segment sizeToFit];

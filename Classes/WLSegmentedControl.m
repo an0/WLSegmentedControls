@@ -31,15 +31,29 @@
     return self;
 }
 
-- (id)initWithItems:(NSArray *)items selectedItems:(NSArray *)selectedItems tint:(BOOL)tint {
+- (id)_initWithItems:(NSArray *)items selectedItems:(NSArray *)selectedItems backgroundImages:(NSArray *)backgroundImages selectedBackgroundImages:(NSArray *)selectedBackgroundImages tint:(BOOL)tint {
 	if ((self = [self initWithFrame:CGRectZero])) {
 		
 	}
 	return self;	
 }
 
+- (id)initWithItems:(NSArray *)items selectedItems:(NSArray *)selectedItems backgroundImages:(NSArray *)backgroundImages selectedBackgroundImages:(NSArray *)selectedBackgroundImages {
+	if ((self = [self _initWithItems:items selectedItems:selectedItems backgroundImages:backgroundImages selectedBackgroundImages:selectedBackgroundImages tint:(backgroundImages == nil)])) {
+		
+	}
+	return self;	
+}
+
+- (id)initWithImages:(NSArray *)images selectedImages:(NSArray *)selectedImages {
+	if ((self = [self _initWithItems:images selectedItems:selectedImages backgroundImages:nil selectedBackgroundImages:nil tint:NO])) {
+		
+	}
+	return self;	
+}
+
 - (id)initWithItems:(NSArray *)items {
-	if ((self = [self initWithItems:items selectedItems:nil tint:YES])) {
+	if ((self = [self initWithItems:items selectedItems:nil backgroundImages:nil selectedBackgroundImages:nil])) {
 		
 	}
 	return self;

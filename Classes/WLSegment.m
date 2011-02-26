@@ -55,7 +55,7 @@ isLast = _isLast;
 #pragma mark -
 #pragma mark Creating, Copying, and Deallocating
 
-- (id)initWithItem:(id)item selectedItem:(id)selectedItem style:(WLSegmentStyle)style tint:(BOOL)tint {
+- (id)initWithItem:(id)item selectedItem:(id)selectedItem backgroundImage:(UIImage *)backgroundImage selectedBackgroundImage:(UIImage *)selectedBackgroundImage style:(WLSegmentStyle)style tint:(BOOL)tint {
 	if ((self = [self initWithFrame:CGRectZero])) {
 		if ([item isKindOfClass:[UIImage class]]) {
 			[self setImage:item forState:UIControlStateNormal];
@@ -68,6 +68,14 @@ isLast = _isLast;
 				[self setImage:selectedItem forState:UIControlStateSelected];
 			} else {
 				[self setTitle:selectedItem forState:UIControlStateSelected];
+			}			
+		}
+		
+		if (backgroundImage) {
+			[self setBackgroundImage:backgroundImage forState:UIControlStateNormal];
+			// selectedBackgroundImage is meaningful only if backgroundImage is set in the first place.
+			if (selectedBackgroundImage) {
+				[self setBackgroundImage:selectedBackgroundImage forState:UIControlStateSelected];
 			}			
 		}
 		

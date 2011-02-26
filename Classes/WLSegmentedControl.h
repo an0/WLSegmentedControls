@@ -29,10 +29,20 @@
  
  @param items A non-empty array of NSString objects (for segment titles) or UIImage objects (for segment images) which is used for normal state.
  @param selectedItems Nil, or a non-empty array of NSString objects (for segment titles) or UIImage objects (for segment images) which is used for selected state. If nil, normal items are also used for selected state. If not nil, the array must be of the same length as items array and each element in this array must correspond to the element at the same index in items array. If not all segments have special items for selected state, you should use setSelectedImage:forSegmentAtIndex: or setSelectedTitle:forSegmentAtIndex: to set individual selected items.
- @param tint If YES, all segments are drawn with tint color. If NO, no segments are drawn with tint color, which is good for fully custom image segments. The default is YES.
+ @param backgroundImages Nil, or a non-empty array of UIImage objects which is used as background images for segments in normal state. If nil, no background images are used. If not nil, the array must be of the same length as items array and each element in this array must correspond to the element at the same index in items array. Tint color is not used if backgroundImages are set, which is good for fully custom segments. Another way to fully customize segments is to initialize with - (id)initWithImages:(NSArray *)images selectedImages:(NSArray *)selectedImages.
+ @param selectedBackgroundImages Nil, or a non-empty array of UIImage objects which is used as backgroundImages for segments in selected state. If nil, normal background images, if set, are also used for selected state. If not nil, backgroundImages must not be nil, and the array must be of the same length as items array and each element in this array must correspond to the element at the same index in items array.
  @return A WLSegmentedControl object or nil if there was a problem in initializing the object.
  */
-- (id)initWithItems:(NSArray *)items selectedItems:(NSArray *)selectedItems tint:(BOOL)tint;
+- (id)initWithItems:(NSArray *)items selectedItems:(NSArray *)selectedItems backgroundImages:(NSArray *)backgroundImages selectedBackgroundImages:(NSArray *)selectedBackgroundImages;
+/**
+ Initializes and returns a segmented control with segments customized with given images. It is for fully customization with images and tint color is not used for segmented control such initialized.
+ 
+ @param images A non-empty array of UIImage objects which is used for normal state.
+ @param selectedImages A non-empty array of UIImage objects which is used for selected state. The array must be of the same length as images array and each element in this array must correspond to the element at the same index in images array.
+ @return A WLSegmentedControl object or nil if there was a problem in initializing the object.
+ */
+- (id)initWithImages:(NSArray *)images selectedImages:(NSArray *)selectedImages;
+
 - (id)initWithItems:(NSArray *)items;
 /// @}
 

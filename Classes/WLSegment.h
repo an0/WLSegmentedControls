@@ -33,7 +33,7 @@ typedef enum {
 	BOOL _isLast;
 }
 
-- (id)initWithItem:(id)item selectedItem:(id)selectedItem style:(WLSegmentStyle)style tint:(BOOL)tint;
+- (id)initWithItem:(id)item selectedItem:(id)selectedItem backgroundImage:(UIImage *)backgroundImage selectedBackgroundImage:(UIImage *)selectedBackgroundImage style:(WLSegmentStyle)style tint:(BOOL)tint;
 
 @property(nonatomic, assign) BOOL isFirst;
 @property(nonatomic, assign) BOOL isLast;
