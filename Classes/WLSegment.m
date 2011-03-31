@@ -402,6 +402,8 @@ isLast = _isLast;
 //        CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
 //        _hOuterBorderGradient = CGGradientCreateWithColors(space, colorArray, locCount > 0 ? locations : NULL);
 //        CGColorSpaceRelease(space);
+//        CFRelease(colorArray);
+
 //    }
 //    return _hOuterBorderGradient;	
 //}
@@ -429,6 +431,7 @@ isLast = _isLast;
 //        CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
 //        _hSelectedOuterBorderGradient = CGGradientCreateWithColors(space, colorArray, locCount > 0 ? locations : NULL);
 //        CGColorSpaceRelease(space);
+//		  CFRelease(colorArray);
 //    }
 //    return _hSelectedOuterBorderGradient;	
 //}
@@ -450,6 +453,7 @@ isLast = _isLast;
 			CFArrayAppendValue(colorArray, [color darkerColor:0.3f].CGColor);
 		}
         _vOuterBorderGradient = CGGradientCreateWithColors(space, colorArray, locCount > 0 ? locations : NULL);
+		CFRelease(colorArray);
         CGColorSpaceRelease(space);
     }
     return _vOuterBorderGradient;
@@ -472,6 +476,7 @@ isLast = _isLast;
 			CFArrayAppendValue(colorArray, [color brighterColor:0.20f].CGColor);
 		}
         _vInnterBorderGradient = CGGradientCreateWithColors(space, colorArray, locCount > 0 ? locations : NULL);
+		CFRelease(colorArray);
         CGColorSpaceRelease(space);
     }
     return _vInnterBorderGradient;
@@ -496,6 +501,7 @@ isLast = _isLast;
 		}
 		
         _vSelectedInnerBorderGradient = CGGradientCreateWithColors(space, colorArray, locCount > 0 ? locations : NULL);
+		CFRelease(colorArray);
         CGColorSpaceRelease(space);
     }
     return _vSelectedInnerBorderGradient;
