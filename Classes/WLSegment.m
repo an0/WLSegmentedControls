@@ -7,7 +7,7 @@
 //
 
 #import "WLSegment.h"
-#import "UIColor+Extension.h"
+#import "UIColor+WLExtension.h"
 
 
 @interface WLSegment ()

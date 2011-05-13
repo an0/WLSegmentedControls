@@ -8,7 +8,7 @@
 
 #import "WLSegmentedControl+Private.h"
 #import "WLVerticalSegmentedControl.h"
-#import "UIColor+Extension.h"
+#import "UIColor+WLExtension.h"
 
 @interface WLVerticalSegmentedControl ()
 
