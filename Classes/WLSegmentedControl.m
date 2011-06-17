@@ -59,14 +59,6 @@
 	return self;
 }
 
-- (void)dealloc {
-	[_segments release];
-	[_tintColor release];
-	
-	[_selectedSegmentIndice release];
-	
-    [super dealloc];
-}
 
 
 #pragma mark -
@@ -162,7 +154,6 @@
 		[self bringSubviewToFront:segmentToSelect];
 	}];
 	
-	[_selectedSegmentIndice release];
 	_selectedSegmentIndice = [indexSet mutableCopy];
 	
 	[self sendActionsForControlEvents:UIControlEventValueChanged];

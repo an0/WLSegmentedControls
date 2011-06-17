@@ -88,7 +88,6 @@
 			[self addSubview:segment];
 			[segment addTarget:self action:@selector(_didTapItem:) forControlEvents:UIControlEventTouchDown];
 			[_segments addObject:segment];
-			[segment release];
 		}
 		
 		if (_segments.count > 0) {
@@ -139,12 +138,6 @@
 	return self;
 }
 
-- (void)dealloc {
-	[_normalGradientColors release];
-	[_selectedGradientColors release];
-	
-	[super dealloc];
-}
 
 
 #pragma mark -
@@ -164,8 +157,7 @@
 		return;
 	}
 	
-	[_tintColor release];
-	_tintColor = [color retain];
+	_tintColor = color;
 	
 	// Recolor.
 	if (_tintColor) {

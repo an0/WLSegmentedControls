@@ -95,12 +95,6 @@ isLast = _isLast;
 
 
 - (void)dealloc {	    
-	[_hTopOuterBorderColor release];
-	[_hTopInnerBorderColor release];
-	[_hBottomOuterBorderColor release];
-	[_hBottomInnerBorderColor release];
-	[_hOuterSideBorderColor release];
-	[_hInnerSideBorderColor release];
 	
 	if (_vOuterBorderGradient != NULL)
 		CGGradientRelease(_vOuterBorderGradient);
@@ -109,7 +103,6 @@ isLast = _isLast;
     if (_vSelectedInnerBorderGradient != NULL)
         CGGradientRelease(_vSelectedInnerBorderGradient);
 	
-    [super dealloc];
 }
 
 

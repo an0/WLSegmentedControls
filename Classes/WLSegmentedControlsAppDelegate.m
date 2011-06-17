@@ -36,7 +36,6 @@
     [window addSubview:verticalSegmentedControl];
 	[verticalSegmentedControl addTarget:self action:@selector(pickDate:) forControlEvents:UIControlEventValueChanged];
 	verticalSegmentedControl.frame = CGRectMake(0, 140, 75, 216);
-	[verticalSegmentedControl release];
 	
 	WLHorizontalSegmentedControl *horizontalSegmentedControl = [[WLHorizontalSegmentedControl alloc] initWithImages:[NSArray arrayWithObjects:[UIImage imageNamed:@"time"], [UIImage imageNamed:@"priority"], [UIImage imageNamed:@"location"], nil] selectedImages:[NSArray arrayWithObjects:[UIImage imageNamed:@"time_active"], [UIImage imageNamed:@"priority_active"], [UIImage imageNamed:@"location_active"], nil]];
 	horizontalSegmentedControl.allowsMultiSelection = YES;
@@ -50,7 +49,6 @@
 	frame.origin.y = 40;
 //	frame.size.width = 200;
 	horizontalSegmentedControl.frame = frame;
-	[horizontalSegmentedControl release];
 	
     [window makeKeyAndVisible];
 	
@@ -106,11 +104,6 @@
 }
 
 
-- (void)dealloc {
-    [window release];
-	[datePicker release];
-    [super dealloc];
-}
 
 
 #pragma mark -

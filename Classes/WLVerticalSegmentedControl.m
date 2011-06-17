@@ -70,7 +70,6 @@
 			[self addSubview:segment];
 			[segment addTarget:self action:@selector(_didTapItem:) forControlEvents:UIControlEventTouchDown];
 			[_segments addObject:segment];
-			[segment release];
 		}
 		
 		CGRect frame = self.frame;
@@ -107,11 +106,6 @@
 	return self;
 }
 
-- (void)dealloc {
-	[_normalGradientColors release];
-	
-	[super dealloc];
-}
 
 
 #pragma mark -
@@ -131,8 +125,7 @@
 		return;
 	}
 	
-	[_tintColor release];
-	_tintColor = [color retain];
+	_tintColor = color;
 	
 	// Recolor.
 	if (_tintColor) {
