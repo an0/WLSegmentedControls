@@ -95,14 +95,12 @@ isLast = _isLast;
 
 
 - (void)dealloc {	    
-	
 	if (_vOuterBorderGradient != NULL)
 		CGGradientRelease(_vOuterBorderGradient);
     if (_vInnterBorderGradient != NULL)
         CGGradientRelease(_vInnterBorderGradient);
     if (_vSelectedInnerBorderGradient != NULL)
-        CGGradientRelease(_vSelectedInnerBorderGradient);
-	
+        CGGradientRelease(_vSelectedInnerBorderGradient);	
 }
 
 
