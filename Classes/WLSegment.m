@@ -81,7 +81,6 @@ isLast = _isLast;
 		
 		self.titleLabel.font = [UIFont boldSystemFontOfSize:13.f];
 		self.titleLabel.adjustsFontSizeToFitWidth = NO;
-		self.titleLabel.minimumFontSize = 13.f;
 		self.titleLabel.shadowOffset = CGSizeMake(0.f, -1.f);
 		[self setTitleShadowColor:[UIColor colorWithWhite:0.1f alpha:1.f] forState:UIControlStateNormal];
 		self.strokeWeight = 0.f;
@@ -142,7 +141,10 @@ isLast = _isLast;
 		CGFloat innerRight = outerRight;
 		CGFloat innerTop = top + 1.5f * lineWeight;
 		CGFloat innerBottom = bottom - 1.5f * lineWeight;
-		
+
+		CGFloat _cornerRadius = self.cornerRadius;
+		WLRoundedCornerPositions _roundedCornerPositions = self.roundedCornerPositions;
+
 		BOOL hasLeftTopRoundedCorner = _cornerRadius > 0.f && (_roundedCornerPositions & WLRoundedCornerLeftTop);
 		BOOL hasLeftBottomRoundedCorner = _cornerRadius > 0.f && (_roundedCornerPositions & WLRoundedCornerLeftBottom);
 		BOOL hasRightTopRoundedCorner = _cornerRadius > 0.f && (_roundedCornerPositions & WLRoundedCornerRightTop);
@@ -376,18 +378,18 @@ isLast = _isLast;
 //	
 //    if (_hOuterBorderGradient == NULL)
 //    {
-//        NSUInteger locCount = [_normalGradientLocations count];
+//        NSUInteger locCount = [self.normalGradientLocations count];
 //        CGFloat locations[locCount];
 //        for (size_t i = 0; i < locCount; i++)
 //        {
-//            NSNumber *location = [_normalGradientLocations objectAtIndex:i];
+//            NSNumber *location = [self.normalGradientLocations objectAtIndex:i];
 //            locations[i] = [location floatValue];
 //        }
 //        
-//		CGFloat const *deltaTable = [[_normalGradientColors lastObject] brightness] > 0.5 ? brightDeltaTable : darkDeltaTable;
-//		CFMutableArrayRef colorArray = CFArrayCreateMutable(NULL, _normalGradientColors.count, NULL);
-//		for (size_t i = 0; i < _normalGradientColors.count; ++i) {
-//			UIColor *color = (UIColor *)[_normalGradientColors objectAtIndex:i];
+//		CGFloat const *deltaTable = [[self.normalGradientColors lastObject] brightness] > 0.5 ? brightDeltaTable : darkDeltaTable;
+//		CFMutableArrayRef colorArray = CFArrayCreateMutable(NULL, self.normalGradientColors.count, NULL);
+//		for (size_t i = 0; i < self.normalGradientColors.count; ++i) {
+//			UIColor *color = (UIColor *)[self.normalGradientColors objectAtIndex:i];
 //			CFArrayAppendValue(colorArray, [color darkerColor:deltaTable[i]].CGColor);
 //		}
 //        CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
@@ -405,15 +407,15 @@ isLast = _isLast;
 //	
 //    if (_hSelectedOuterBorderGradient == NULL)
 //    {
-//        NSUInteger locCount = [_selectedGradientLocations count];
+//        NSUInteger locCount = [self.selectedGradientLocations count];
 //        CGFloat locations[locCount];
 //        for (size_t i = 0; i < locCount; i++)
 //        {
-//            NSNumber *location = [_selectedGradientLocations objectAtIndex:i];
+//            NSNumber *location = [self.selectedGradientLocations objectAtIndex:i];
 //            locations[i] = [location floatValue];
 //        }
 //        
-//		CGFloat const *deltaTable = [[_normalGradientColors lastObject] brightness] > 0.5 ? brightDeltaTable : darkDeltaTable;
+//		CGFloat const *deltaTable = [[self.normalGradientColors lastObject] brightness] > 0.5 ? brightDeltaTable : darkDeltaTable;
 //		CFMutableArrayRef colorArray = CFArrayCreateMutable(NULL, _selectedGradientColors.count, NULL);
 //		for (size_t i = 0; i < _selectedGradientColors.count; ++i) {
 //			UIColor *color = (UIColor *)[_selectedGradientColors objectAtIndex:i];
@@ -430,17 +432,17 @@ isLast = _isLast;
 - (CGGradientRef)vOuterBorderGradient {
     if (_vOuterBorderGradient == NULL)
     {
-        NSUInteger locCount = [_normalGradientLocations count];
+        NSUInteger locCount = [self.normalGradientLocations count];
         CGFloat locations[locCount];
         for (size_t i = 0; i < locCount; i++)
         {
-            NSNumber *location = [_normalGradientLocations objectAtIndex:i];
+            NSNumber *location = [self.normalGradientLocations objectAtIndex:i];
             locations[i] = [location floatValue];
         }
         CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
         
-		CFMutableArrayRef colorArray = CFArrayCreateMutable(NULL, _normalGradientColors.count, NULL);
-		for (UIColor *color in _normalGradientColors) {
+		CFMutableArrayRef colorArray = CFArrayCreateMutable(NULL, self.normalGradientColors.count, NULL);
+		for (UIColor *color in self.normalGradientColors) {
 			CFArrayAppendValue(colorArray, [color darkerColor:0.3f].CGColor);
 		}
         _vOuterBorderGradient = CGGradientCreateWithColors(space, colorArray, locCount > 0 ? locations : NULL);
@@ -453,17 +455,17 @@ isLast = _isLast;
 - (CGGradientRef)vInnterBorderGradient {
     if (_vInnterBorderGradient == NULL)
     {
-        NSUInteger locCount = [_normalGradientLocations count];
+        NSUInteger locCount = [self.normalGradientLocations count];
         CGFloat locations[locCount];
         for (size_t i = 0; i < locCount; i++)
         {
-            NSNumber *location = [_normalGradientLocations objectAtIndex:i];
+            NSNumber *location = [self.normalGradientLocations objectAtIndex:i];
             locations[i] = [location floatValue];
         }
         CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
         
-		CFMutableArrayRef colorArray = CFArrayCreateMutable(NULL, _normalGradientColors.count, NULL);
-		for (UIColor *color in _normalGradientColors) {
+		CFMutableArrayRef colorArray = CFArrayCreateMutable(NULL, self.normalGradientColors.count, NULL);
+		for (UIColor *color in self.normalGradientColors) {
 			CFArrayAppendValue(colorArray, [color brighterColor:0.20f].CGColor);
 		}
         _vInnterBorderGradient = CGGradientCreateWithColors(space, colorArray, locCount > 0 ? locations : NULL);
@@ -477,17 +479,17 @@ isLast = _isLast;
     
     if (_vSelectedInnerBorderGradient == NULL)
     {
-		NSUInteger locCount = [_selectedGradientLocations count];
+		NSUInteger locCount = [self.selectedGradientLocations count];
         CGFloat locations[locCount];
         for (size_t i = 0; i < locCount; i++)
         {
-            NSNumber *location = [_selectedGradientLocations objectAtIndex:i];
+            NSNumber *location = [self.selectedGradientLocations objectAtIndex:i];
             locations[i] = [location floatValue];
         }
         CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
 		
-		CFMutableArrayRef colorArray = CFArrayCreateMutable(NULL, _selectedGradientColors.count, NULL);
-		for (UIColor *color in _selectedGradientColors) {
+		CFMutableArrayRef colorArray = CFArrayCreateMutable(NULL, self.selectedGradientColors.count, NULL);
+		for (UIColor *color in self.selectedGradientColors) {
 			CFArrayAppendValue(colorArray, [color brighterColor:0.15f].CGColor);
 		}
 		

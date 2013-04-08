@@ -16,6 +16,7 @@
 		C925494A11F81D8A00C776C9 /* WLGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C925494911F81D8A00C776C9 /* WLGradientButton.m */; };
 		C960131413AC04D2005F871B /* UIView+WLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C960131113AC04D2005F871B /* UIView+WLExtension.m */; };
 		C960131513AC04D2005F871B /* UIColor+WLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C960131313AC04D2005F871B /* UIColor+WLExtension.m */; };
+		C961BCD117120292008EBF28 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C961BCD017120292008EBF28 /* Default-568h@2x.png */; };
 		C99E6E4B11F6A05A005284C6 /* WLVerticalSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C99E6E4A11F6A05A005284C6 /* WLVerticalSegmentedControl.m */; };
 		C9A3BD7A11FE8A04004F064B /* WLHorizontalSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A3BD7911FE8A04004F064B /* WLHorizontalSegmentedControl.m */; };
 		C9A3BD7D11FE8B68004F064B /* WLSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A3BD7C11FE8B68004F064B /* WLSegmentedControl.m */; };
@@ -46,6 +47,7 @@
 		C960131113AC04D2005F871B /* UIView+WLExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+WLExtension.m"; path = "../../WLUIKit/Classes/UIView+WLExtension.m"; sourceTree = "<group>"; };
 		C960131213AC04D2005F871B /* UIColor+WLExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+WLExtension.h"; path = "../../WLUIKit/Classes/UIColor+WLExtension.h"; sourceTree = "<group>"; };
 		C960131313AC04D2005F871B /* UIColor+WLExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+WLExtension.m"; path = "../../WLUIKit/Classes/UIColor+WLExtension.m"; sourceTree = "<group>"; };
+		C961BCD017120292008EBF28 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C99E6E4911F6A05A005284C6 /* WLVerticalSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLVerticalSegmentedControl.h; sourceTree = "<group>"; };
 		C99E6E4A11F6A05A005284C6 /* WLVerticalSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLVerticalSegmentedControl.m; sourceTree = "<group>"; };
 		C9A3BD7811FE8A04004F064B /* WLHorizontalSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLHorizontalSegmentedControl.h; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C961BCD017120292008EBF28 /* Default-568h@2x.png */,
 				C9BF55BD12E1581900CC4A23 /* time.png */,
 				C9BF55BF12E1582100CC4A23 /* time_active.png */,
 				C9BF564F12E162F300CC4A23 /* priority.png */,
@@ -216,7 +219,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0460;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "WLSegmentedControls" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -249,6 +252,7 @@
 				C9BF565112E162F300CC4A23 /* location.png in Resources */,
 				C9BF565212E162F300CC4A23 /* priority_active.png in Resources */,
 				C9BF565312E162F300CC4A23 /* priority.png in Resources */,
+				C961BCD117120292008EBF28 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
