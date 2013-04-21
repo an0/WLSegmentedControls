@@ -256,10 +256,7 @@ isLast = _isLast;
 	
 	else {
 		// Fill the region.
-		self.bounds = CGRectMake(0.f, 2 * lineWeight, width - 2 * lineWeight, height - 2 * lineWeight);
 		[super drawRect:rect];
-		self.contentMode = UIViewContentModeBottomLeft;
-		self.bounds = CGRectMake(0.f, 0.f, width, height);		
 
 		// Draw the top and right border lines.
 		CGGradientRef darkGradient = self.vOuterBorderGradient;

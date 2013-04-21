@@ -53,54 +53,35 @@
 
 - (id)_initWithItems:(NSArray *)items selectedItems:(NSArray *)selectedItems backgroundImages:(NSArray *)backgroundImages selectedBackgroundImages:(NSArray *)selectedBackgroundImages tint:(BOOL)tint {
 	if ((self = [super _initWithItems:items selectedItems:selectedItems backgroundImages:backgroundImages selectedBackgroundImages:selectedBackgroundImages tint:tint])) {
-		CGFloat maxHeight = 0.f;
-		CGFloat maxWidth = 0.f;
 		_segments = [[NSMutableArray alloc] initWithCapacity:[items count]];
-		for (NSUInteger i = 0; i < [items count]; ++i) {
-			id item = [items objectAtIndex:i];
-			id selectedItem = [selectedItems objectAtIndex:i];
-			UIImage *backgroundImage = [backgroundImages objectAtIndex:i];
-			UIImage *selectedBackgroundImage = [selectedBackgroundImages objectAtIndex:i];
+		NSUInteger itemCount = items.count;
+		__block WLSegment *prevSegment;
+		[items enumerateObjectsUsingBlock:^(id item, NSUInteger idx, BOOL *stop) {
+			id selectedItem = [selectedItems objectAtIndex:idx];
+			UIImage *backgroundImage = [backgroundImages objectAtIndex:idx];
+			UIImage *selectedBackgroundImage = [selectedBackgroundImages objectAtIndex:idx];
 			WLSegment *segment = [[WLSegment alloc] initWithItem:item selectedItem:selectedItem backgroundImage:backgroundImage selectedBackgroundImage:selectedBackgroundImage style:WLSegmentStyleVertical tint:tint];
 			segment.selectedGradientLocations = segment.normalGradientLocations = [NSArray arrayWithObjects:[NSNumber numberWithFloat:0.f], [NSNumber numberWithFloat:1.f], nil];
 			segment.contentMode = UIViewContentModeRedraw;
-			[segment sizeToFit];
-			maxHeight = MAX(maxHeight, segment.frame.size.height);
-			maxWidth = MAX(maxWidth, segment.frame.size.width);
 			[self addSubview:segment];
 			[segment addTarget:self action:@selector(_didTapItem:) forControlEvents:UIControlEventTouchDown];
 			[_segments addObject:segment];
-		}
-		
-		CGRect frame = self.frame;
-		frame.size.width = maxWidth;
-		// Make segments have a uniform height.
-		frame.size.height = maxHeight * _segments.count;
-		self.frame = frame;
-		
-		// Vertically layout segments.
-		CGFloat segmentWidth = self.bounds.size.width;
-		CGFloat segmentHeight = maxHeight; // Uniformly distribute the height among segments.
-		CGFloat y = 0.f;
-		for (WLSegment *segment in _segments) {
-			CGRect segmentFrame = segment.frame;
-			segmentFrame.origin.x = 0.f;
-			segmentFrame.origin.y = y;
-			segmentFrame.size.width = segmentWidth;
-			segmentFrame.size.height = segmentHeight;
-			segment.frame = segmentFrame;
-			segment.autoresizingMask =
-			UIViewAutoresizingFlexibleWidth | 
-			UIViewAutoresizingFlexibleHeight | 
-			UIViewAutoresizingFlexibleTopMargin | 
-			UIViewAutoresizingFlexibleBottomMargin | 
-			UIViewAutoresizingFlexibleLeftMargin | 
-			UIViewAutoresizingFlexibleRightMargin;
-			
-			y += segmentFrame.size.height;
-		}
-		
-		[self tintSegments];
+
+			// Vertically layout segments. Uniformly distribute the height among segments.
+			segment.translatesAutoresizingMaskIntoConstraints = NO;
+			NSDictionary *viewDict = NSDictionaryOfVariableBindings(segment);
+			[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[segment]|" options:0 metrics:nil views:viewDict]];
+			if (prevSegment) {
+				[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[prevSegment][segment(==prevSegment)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(prevSegment, segment)]];
+			}
+			prevSegment = segment;
+			if (idx == 0) {
+				[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[segment]" options:0 metrics:nil views:viewDict]];
+			}
+			if (idx == itemCount - 1) {
+				[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[segment]|" options:0 metrics:nil views:viewDict]];
+			}
+		}];
 	}
 	
 	return self;
@@ -137,15 +118,11 @@
 		self.normalGradientColors = [WLVerticalSegmentedControl defaultNormalGradientColors];
 	}
 	
-	[self tintSegments];
+	[self setNeedsLayout];
 }
 
-- (void)setFrame:(CGRect)frame {
-	if (CGRectEqualToRect(self.frame, frame)) {
-		return;
-	}
-	
-	[super setFrame:frame];
+- (void)layoutSubviews {
+	[super layoutSubviews];
 	[self tintSegments];
 }
 
