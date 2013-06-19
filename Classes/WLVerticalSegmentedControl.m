@@ -33,8 +33,8 @@
 	
 	if (defaultNormalGradientColors == nil) {
 		defaultNormalGradientColors = [[NSArray alloc] initWithObjects:
-									   [UIColor colorWithRed:0.636 green:0.638 blue:0.665 alpha:1.000],
-									   [UIColor colorWithRed:0.155 green:0.164 blue:0.222 alpha:1.000],
+									   [UIColor colorWithRed:0.636f green:0.638f blue:0.665f alpha:1.000f],
+									   [UIColor colorWithRed:0.155f green:0.164f blue:0.222f alpha:1.000f],
 									   nil];		
 	}
 	return defaultNormalGradientColors;

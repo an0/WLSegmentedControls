@@ -36,10 +36,10 @@
 	static NSArray *defaultNormalGradientColors = nil;
 	if (defaultNormalGradientColors == nil) {
 		defaultNormalGradientColors = [[NSArray alloc] initWithObjects:
-									   [UIColor colorWithRed:0.639 green:0.698 blue:0.765 alpha:1.000],
-									   [UIColor colorWithRed:0.475 green:0.557 blue:0.667 alpha:1.000],
-									   [UIColor colorWithRed:0.420 green:0.514 blue:0.631 alpha:1.000],
-									   [UIColor colorWithRed:0.431 green:0.522 blue:0.639 alpha:1.000],
+									   [UIColor colorWithRed:0.639f green:0.698f blue:0.765f alpha:1.000f],
+									   [UIColor colorWithRed:0.475f green:0.557f blue:0.667f alpha:1.000f],
+									   [UIColor colorWithRed:0.420f green:0.514f blue:0.631f alpha:1.000f],
+									   [UIColor colorWithRed:0.431f green:0.522f blue:0.639f alpha:1.000f],
 									   nil];		
 	}
 	return defaultNormalGradientColors;
@@ -49,10 +49,10 @@
 	static NSArray *defaultSelectedGradientColor = nil;
 	if (defaultSelectedGradientColor == nil) {
 		defaultSelectedGradientColor = [[NSArray alloc] initWithObjects:
-										[UIColor colorWithRed:0.556 green:0.636 blue:0.751 alpha:1.000],
-										[UIColor colorWithRed:0.345 green:0.467 blue:0.635 alpha:1.000],
-										[UIColor colorWithRed:0.282 green:0.416 blue:0.596 alpha:1.000],
-										[UIColor colorWithRed:0.282 green:0.416 blue:0.596 alpha:1.000],
+										[UIColor colorWithRed:0.556f green:0.636f blue:0.751f alpha:1.000f],
+										[UIColor colorWithRed:0.345f green:0.467f blue:0.635f alpha:1.000f],
+										[UIColor colorWithRed:0.282f green:0.416f blue:0.596f alpha:1.000f],
+										[UIColor colorWithRed:0.282f green:0.416f blue:0.596f alpha:1.000f],
 										nil];			
 	}
 	return defaultSelectedGradientColor;
@@ -165,15 +165,15 @@
 		//		CGFloat saturation = [_tintColor saturation];
 		self.normalGradientColors = [NSArray arrayWithObjects:
 									 [_tintColor tintColor],
-									 [UIColor interpolatedColor:0.10 from:_tintColor to:[UIColor whiteColor]],
+									 [UIColor interpolatedColor:0.1f from:_tintColor to:[UIColor whiteColor]],
 									 _tintColor,
 									 _tintColor,
 									 nil];
 		
-		UIColor *selectedBaseColor = [UIColor interpolatedColor:0.12 from:_tintColor to:[UIColor whiteColor]];
+		UIColor *selectedBaseColor = [UIColor interpolatedColor:0.12f from:_tintColor to:[UIColor whiteColor]];
 		self.selectedGradientColors = [NSArray arrayWithObjects:
 									   [selectedBaseColor tintColor],
-									   [UIColor interpolatedColor:0.10 from:selectedBaseColor to:[UIColor whiteColor]],
+									   [UIColor interpolatedColor:0.1f from:selectedBaseColor to:[UIColor whiteColor]],
 									   selectedBaseColor,
 									   selectedBaseColor,
 									   nil];		
