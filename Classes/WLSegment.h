@@ -8,10 +8,10 @@
 
 #import "WLGradientButton.h"
 
-typedef enum {
+typedef NS_ENUM(NSInteger, WLSegmentStyle) {
 	WLSegmentStyleHorizontal,
 	WLSegmentStyleVertical,
-} WLSegmentStyle;
+};
 
 
 @interface WLSegment : WLGradientButton {
