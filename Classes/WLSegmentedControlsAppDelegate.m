@@ -30,14 +30,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     // Override point for customization after application launch.
-	WLVerticalSegmentedControl *verticalSegmentedControl = [[WLVerticalSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"None", @"Daily", @"Weekly", @"Monthly", @"Yearly", nil]];
+	WLVerticalSegmentedControl *verticalSegmentedControl = [[WLVerticalSegmentedControl alloc] initWithItems:@[@"None", @"Daily", @"Weekly", @"Monthly", @"Yearly"]];
 	verticalSegmentedControl.allowsMultiSelection = YES;
 //	verticalSegmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
     [window addSubview:verticalSegmentedControl];
 	[verticalSegmentedControl addTarget:self action:@selector(pickDate:) forControlEvents:UIControlEventValueChanged];
 	verticalSegmentedControl.frame = CGRectMake(0, 140, 75, 216);
 	
-	WLHorizontalSegmentedControl *horizontalSegmentedControl = [[WLHorizontalSegmentedControl alloc] initWithImages:[NSArray arrayWithObjects:[UIImage imageNamed:@"time"], [UIImage imageNamed:@"priority"], [UIImage imageNamed:@"location"], nil] selectedImages:[NSArray arrayWithObjects:[UIImage imageNamed:@"time_active"], [UIImage imageNamed:@"priority_active"], [UIImage imageNamed:@"location_active"], nil]];
+	WLHorizontalSegmentedControl *horizontalSegmentedControl = [[WLHorizontalSegmentedControl alloc] initWithImages:@[[UIImage imageNamed:@"time"], [UIImage imageNamed:@"priority"], [UIImage imageNamed:@"location"]] selectedImages:@[[UIImage imageNamed:@"time_active"], [UIImage imageNamed:@"priority_active"], [UIImage imageNamed:@"location_active"]]];
 	horizontalSegmentedControl.allowsMultiSelection = YES;
 //	horizontalSegmentedControl.tintColor = [UIColor colorWithRed:.2 green:.0 blue:.2 alpha:1];
 	horizontalSegmentedControl.tintColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];

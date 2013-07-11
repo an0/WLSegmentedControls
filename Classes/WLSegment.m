@@ -433,7 +433,7 @@ isLast = _isLast;
         CGFloat locations[locCount];
         for (size_t i = 0; i < locCount; i++)
         {
-            NSNumber *location = [self.normalGradientLocations objectAtIndex:i];
+            NSNumber *location = (self.normalGradientLocations)[i];
             locations[i] = [location floatValue];
         }
         CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
@@ -456,7 +456,7 @@ isLast = _isLast;
         CGFloat locations[locCount];
         for (size_t i = 0; i < locCount; i++)
         {
-            NSNumber *location = [self.normalGradientLocations objectAtIndex:i];
+            NSNumber *location = (self.normalGradientLocations)[i];
             locations[i] = [location floatValue];
         }
         CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
@@ -480,7 +480,7 @@ isLast = _isLast;
         CGFloat locations[locCount];
         for (size_t i = 0; i < locCount; i++)
         {
-            NSNumber *location = [self.selectedGradientLocations objectAtIndex:i];
+            NSNumber *location = (self.selectedGradientLocations)[i];
             locations[i] = [location floatValue];
         }
         CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();

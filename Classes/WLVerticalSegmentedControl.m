@@ -32,10 +32,8 @@
 	static NSArray *defaultNormalGradientColors = nil;
 	
 	if (defaultNormalGradientColors == nil) {
-		defaultNormalGradientColors = [[NSArray alloc] initWithObjects:
-									   [UIColor colorWithRed:0.636f green:0.638f blue:0.665f alpha:1.000f],
-									   [UIColor colorWithRed:0.155f green:0.164f blue:0.222f alpha:1.000f],
-									   nil];		
+		defaultNormalGradientColors = @[[UIColor colorWithRed:0.636f green:0.638f blue:0.665f alpha:1.000f],
+									   [UIColor colorWithRed:0.155f green:0.164f blue:0.222f alpha:1.000f]];		
 	}
 	return defaultNormalGradientColors;
 }
@@ -57,11 +55,11 @@
 		NSUInteger itemCount = items.count;
 		__block WLSegment *prevSegment;
 		[items enumerateObjectsUsingBlock:^(id item, NSUInteger idx, BOOL *stop) {
-			id selectedItem = [selectedItems objectAtIndex:idx];
-			UIImage *backgroundImage = [backgroundImages objectAtIndex:idx];
-			UIImage *selectedBackgroundImage = [selectedBackgroundImages objectAtIndex:idx];
+			id selectedItem = selectedItems[idx];
+			UIImage *backgroundImage = backgroundImages[idx];
+			UIImage *selectedBackgroundImage = selectedBackgroundImages[idx];
 			WLSegment *segment = [[WLSegment alloc] initWithItem:item selectedItem:selectedItem backgroundImage:backgroundImage selectedBackgroundImage:selectedBackgroundImage style:WLSegmentStyleVertical tint:tint];
-			segment.selectedGradientLocations = segment.normalGradientLocations = [NSArray arrayWithObjects:[NSNumber numberWithFloat:0.f], [NSNumber numberWithFloat:1.f], nil];
+			segment.selectedGradientLocations = segment.normalGradientLocations = @[@0.f, @1.f];
 			segment.contentMode = UIViewContentModeRedraw;
 			[self addSubview:segment];
 			[segment addTarget:self action:@selector(_didTapItem:) forControlEvents:UIControlEventTouchDown];
@@ -110,10 +108,8 @@
 	
 	// Recolor.
 	if (_tintColor) {
-		self.normalGradientColors = [NSArray arrayWithObjects:
-									 [_tintColor brighterColor:0.46f],
-									 _tintColor,
-									 nil];		
+		self.normalGradientColors = @[[_tintColor brighterColor:0.46f],
+									 _tintColor];		
 	} else {
 		self.normalGradientColors = [WLVerticalSegmentedControl defaultNormalGradientColors];
 	}
@@ -130,8 +126,8 @@
 - (void)tintSegments {
 	// Gradually distribute the tint color to segments.
 	CGFloat height = self.bounds.size.height;
-	UIColor *topColor = [self.normalGradientColors objectAtIndex:0];
-	UIColor *bottomColor = [self.normalGradientColors objectAtIndex:1];
+	UIColor *topColor = (self.normalGradientColors)[0];
+	UIColor *bottomColor = (self.normalGradientColors)[1];
 	
 	for (WLSegment *segment in _segments) {
 		UIColor *normalSegmentTopColor = [UIColor interpolatedColor:segment.frame.origin.y / height from:topColor to:bottomColor];
@@ -139,8 +135,8 @@
 		// Selected gradient color is a bit more severe.
 		UIColor *selectedSegmentTopColor = [normalSegmentTopColor brighterColor:0.35f];
 		UIColor *selectedSegmentBottomColor = [normalSegmentBottomColor darkerColor:0.35f];
-		segment.normalGradientColors = [NSArray arrayWithObjects:normalSegmentTopColor, normalSegmentBottomColor, nil];
-		segment.selectedGradientColors = [NSArray arrayWithObjects:selectedSegmentTopColor, selectedSegmentBottomColor, nil];
+		segment.normalGradientColors = @[normalSegmentTopColor, normalSegmentBottomColor];
+		segment.selectedGradientColors = @[selectedSegmentTopColor, selectedSegmentBottomColor];
 	}	
 }
 

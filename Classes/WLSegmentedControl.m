@@ -65,35 +65,35 @@
 #pragma mark Managing Segment Content
 
 - (void)setImage:(UIImage *)image forSegmentAtIndex:(NSUInteger)segment {
-	[(WLSegment *)[_segments objectAtIndex:segment] setImage:image forState:UIControlStateNormal];
+	[(WLSegment *)_segments[segment] setImage:image forState:UIControlStateNormal];
 }
 
 - (UIImage *)imageForSegmentAtIndex:(NSUInteger)segment {
-	return [(WLSegment *)[_segments objectAtIndex:segment] imageForState:UIControlStateNormal];
+	return [(WLSegment *)_segments[segment] imageForState:UIControlStateNormal];
 }
 
 - (void)setTitle:(NSString *)title forSegmentAtIndex:(NSUInteger)segment {
-	[(WLSegment *)[_segments objectAtIndex:segment] setTitle:title forState:UIControlStateNormal];
+	[(WLSegment *)_segments[segment] setTitle:title forState:UIControlStateNormal];
 }
 
 - (NSString *)titleForSegmentAtIndex:(NSUInteger)segment {
-	return [(WLSegment *)[_segments objectAtIndex:segment] titleForState:UIControlStateNormal];
+	return [(WLSegment *)_segments[segment] titleForState:UIControlStateNormal];
 }
 
 - (void)setSelectedImage:(UIImage *)image forSegmentAtIndex:(NSUInteger)segment {
-	[(WLSegment *)[_segments objectAtIndex:segment] setImage:image forState:UIControlStateSelected];
+	[(WLSegment *)_segments[segment] setImage:image forState:UIControlStateSelected];
 }
 
 - (UIImage *)selectedImageForSegmentAtIndex:(NSUInteger)segment {
-	return [(WLSegment *)[_segments objectAtIndex:segment] imageForState:UIControlStateSelected];
+	return [(WLSegment *)_segments[segment] imageForState:UIControlStateSelected];
 }
 
 - (void)setSelectedTitle:(NSString *)title forSegmentAtIndex:(NSUInteger)segment {
-	[(WLSegment *)[_segments objectAtIndex:segment] setTitle:title forState:UIControlStateSelected];
+	[(WLSegment *)_segments[segment] setTitle:title forState:UIControlStateSelected];
 }
 
 - (NSString *)selectedTitleForSegmentAtIndex:(NSUInteger)segment {
-	return [(WLSegment *)[_segments objectAtIndex:segment] titleForState:UIControlStateSelected];	
+	return [(WLSegment *)_segments[segment] titleForState:UIControlStateSelected];	
 }
 
 
@@ -122,13 +122,13 @@
 	}
 	
 	if (_selectedSegmentIndex != UISegmentedControlNoSegment) {
-		WLSegment *selectedSegment = [_segments objectAtIndex:_selectedSegmentIndex];
+		WLSegment *selectedSegment = _segments[_selectedSegmentIndex];
 		selectedSegment.selected = NO;
 		[self sendSubviewToBack:selectedSegment];
 	}
 	
 	if (index != UISegmentedControlNoSegment) {
-		WLSegment *segmentToSelect = [_segments objectAtIndex:index];
+		WLSegment *segmentToSelect = _segments[index];
 		segmentToSelect.selected = YES;
 		[self bringSubviewToFront:segmentToSelect];
 	}
@@ -144,12 +144,12 @@
 	}
 	
 	[_selectedSegmentIndice enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
-		WLSegment *selectedSegment = [_segments objectAtIndex:idx];
+		WLSegment *selectedSegment = _segments[idx];
 		selectedSegment.selected = NO;		
 		[self sendSubviewToBack:selectedSegment];
 	}];
 	[indexSet enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
-		WLSegment *segmentToSelect = [_segments objectAtIndex:idx];
+		WLSegment *segmentToSelect = _segments[idx];
 		segmentToSelect.selected = YES;
 		[self bringSubviewToFront:segmentToSelect];
 	}];
@@ -160,7 +160,7 @@
 }
 
 - (void)selectSegmentWithIndex:(NSInteger)index {
-	WLSegment *segmentToSelect = [_segments objectAtIndex:index];
+	WLSegment *segmentToSelect = _segments[index];
 	segmentToSelect.selected = YES;
 	[self bringSubviewToFront:segmentToSelect];
 	[_selectedSegmentIndice addIndex:index];
@@ -169,7 +169,7 @@
 }
 
 - (void)deselectSegmentWithIndex:(NSInteger)index {
-	WLSegment *selectedSegment = [_segments objectAtIndex:index];
+	WLSegment *selectedSegment = _segments[index];
 	selectedSegment.selected = NO;
 	[self sendSubviewToBack:selectedSegment];
 	[_selectedSegmentIndice removeIndex:index];
