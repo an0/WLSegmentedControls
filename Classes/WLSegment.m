@@ -10,503 +10,131 @@
 #import "UIColor+WLExtension.h"
 
 
-@interface WLSegment ()
-
-@property(nonatomic, retain) UIColor *hTopOuterBorderColor;
-@property(nonatomic, retain) UIColor *hTopInnerBorderColor;
-@property(nonatomic, retain) UIColor *hBottomOuterBorderColor;
-@property(nonatomic, retain) UIColor *hBottomInnerBorderColor;
-@property(nonatomic, retain) UIColor *hOuterSideBorderColor;
-@property(nonatomic, retain) UIColor *hInnerSideBorderColor;
-
-@property(nonatomic, readonly) CGGradientRef vOuterBorderGradient;
-@property(nonatomic, readonly) CGGradientRef vInnterBorderGradient;
-@property(nonatomic, readonly) CGGradientRef vSelectedInnerBorderGradient;
+@interface WLSegment () {
+	WLSegmentStyle _style;
+	BOOL _tint;
+	UIImageView *_divider;
+}
 
 @end
 
-
-
-
-#pragma mark -
-
 @implementation WLSegment
 
-@synthesize
-hTopOuterBorderColor = _hTopOuterBorderColor,
-hTopInnerBorderColor = _hTopInnerBorderColor,
-hBottomOuterBorderColor = _hBottomOuterBorderColor,
-hBottomInnerBorderColor = _hBottomInnerBorderColor,
-hOuterSideBorderColor = _hOuterSideBorderColor,
-hInnerSideBorderColor = _hInnerSideBorderColor;
-
-
-@synthesize 
-vInnterBorderGradient = _vInnterBorderGradient,
-vSelectedInnerBorderGradient = _vSelectedInnerBorderGradient,
-vOuterBorderGradient = _vOuterBorderGradient;
-
-@synthesize
-isFirst = _isFirst,
-isLast = _isLast;
-
-
-
-#pragma mark -
-#pragma mark Creating, Copying, and Deallocating
-
-- (id)initWithItem:(id)item selectedItem:(id)selectedItem backgroundImage:(UIImage *)backgroundImage selectedBackgroundImage:(UIImage *)selectedBackgroundImage style:(WLSegmentStyle)style tint:(BOOL)tint {
-	if ((self = [self initWithFrame:CGRectZero])) {
++ (instancetype)segmentWithItem:(id)item selectedItem:(id)selectedItem backgroundImage:(UIImage *)backgroundImage selectedBackgroundImage:(UIImage *)selectedBackgroundImage style:(WLSegmentStyle)style tint:(BOOL)tint {
+	WLSegment *segment = [self buttonWithType:UIButtonTypeCustom];
+	segment.contentEdgeInsets = UIEdgeInsetsMake(6., 6., 6., 6.);
+	if (segment) {
 		if ([item isKindOfClass:[UIImage class]]) {
-			[self setImage:item forState:UIControlStateNormal];
+			[segment setImage:item forState:UIControlStateNormal];
 		} else {
-			[self setTitle:item forState:UIControlStateNormal];
+			[segment setTitle:item forState:UIControlStateNormal];
 		}
 		
 		if (selectedItem) {
 			if ([selectedItem isKindOfClass:[UIImage class]]) {
-				[self setImage:selectedItem forState:UIControlStateSelected];
+				[segment setImage:selectedItem forState:UIControlStateSelected];
 			} else {
-				[self setTitle:selectedItem forState:UIControlStateSelected];
+				[segment setTitle:selectedItem forState:UIControlStateSelected];
 			}			
 		}
 		
 		if (backgroundImage) {
-			[self setBackgroundImage:backgroundImage forState:UIControlStateNormal];
+			[segment setBackgroundImage:backgroundImage forState:UIControlStateNormal];
 			// selectedBackgroundImage is meaningful only if backgroundImage is set in the first place.
 			if (selectedBackgroundImage) {
-				[self setBackgroundImage:selectedBackgroundImage forState:UIControlStateSelected];
+				[segment setBackgroundImage:selectedBackgroundImage forState:UIControlStateSelected];
 			}			
 		}
-		
-		self.titleLabel.font = [UIFont boldSystemFontOfSize:13.f];
-		self.titleLabel.adjustsFontSizeToFitWidth = NO;
-		self.titleLabel.shadowOffset = CGSizeMake(0.f, -1.f);
-		[self setTitleShadowColor:[UIColor colorWithWhite:0.1f alpha:1.f] forState:UIControlStateNormal];
-		self.strokeWeight = 0.f;
-		self.cornerRadius = 0.f;
-		
-		_style = style;
-		_tint = tint;
-	}	
-	return self;
+
+		segment.titleLabel.font = [UIFont systemFontOfSize:13.];
+
+		segment->_style = style;
+		segment->_tint = tint;
+
+		UIImageView *divider = [UIImageView new];
+		[segment addSubview:divider];
+		divider.translatesAutoresizingMaskIntoConstraints = NO;
+		switch (style) {
+			case WLSegmentStyleHorizontal:
+				[divider addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1. constant:1.]];
+				[segment addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:segment attribute:NSLayoutAttributeRight multiplier:1. constant:0.]];
+				[segment addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:segment attribute:NSLayoutAttributeTop multiplier:1. constant:0.]];
+				[segment addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:segment attribute:NSLayoutAttributeBottom multiplier:1. constant:0.]];
+				break;
+
+			case WLSegmentStyleVertical:
+				[divider addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1. constant:1.]];
+				[segment addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:segment attribute:NSLayoutAttributeBottom multiplier:1. constant:0.]];
+				[segment addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:segment attribute:NSLayoutAttributeLeading multiplier:1. constant:0.]];
+				[segment addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:segment attribute:NSLayoutAttributeTrailing multiplier:1. constant:0.]];
+				break;
+		}
+		segment->_divider = divider;
+
+		segment.tintColor = segment.tintColor;
+	}
+	return segment;
 }
 
+- (void)setTintColor:(UIColor *)tintColor {
+	[super setTintColor:tintColor];
 
-- (void)dealloc {	    
-	if (_vOuterBorderGradient != NULL)
-		CGGradientRelease(_vOuterBorderGradient);
-    if (_vInnterBorderGradient != NULL)
-        CGGradientRelease(_vInnterBorderGradient);
-    if (_vSelectedInnerBorderGradient != NULL)
-        CGGradientRelease(_vSelectedInnerBorderGradient);	
+	[self setTitleColor:tintColor forState:UIControlStateNormal];
+	_divider.backgroundColor = tintColor;
 }
 
+- (void)setIsLast:(BOOL)isLast {
+	if (_isLast == isLast) return;
 
+	_isLast = isLast;
+	_divider.hidden = _isLast;
+}
 
-#pragma mark -
-#pragma mark Drawing
+- (void)setHighlighted:(BOOL)highlighted {
+	[super setHighlighted:highlighted];
+	[self setNeedsDisplay];
+}
+
+- (void)setSelected:(BOOL)selected {
+	[super setSelected:selected];
+	self.titleLabel.alpha = !selected;
+}
 
 - (void)drawRect:(CGRect)rect {
-	if (!_tint) {
-		return;
-	}
-	
-	CGFloat width = self.bounds.size.width;
-	CGFloat height = self.bounds.size.height;
-	CGFloat left = self.bounds.origin.x;
-	CGFloat right = left + width;
-	CGFloat top = self.bounds.origin.y;
-	CGFloat bottom = top + height;
-	CGFloat lineWeight = 1.f;
-	
-	CGContextRef context = UIGraphicsGetCurrentContext();
-	CGContextSetLineWidth(context, lineWeight);
+	if (!_tint) return;
+	if (!self.highlighted && !self.selected) return;
 
+	UIBezierPath *path;
+	UIRectCorner roundingCorners = 0;
 	if (_style == WLSegmentStyleHorizontal) {
-		// Fill the region.
-		self.bounds = CGRectMake(left, top, width, height - lineWeight);
-		self.cornerRadius += 1.f;
-		[super drawRect:rect];
-		self.cornerRadius -= 1.f;
-		self.bounds = CGRectMake(left, top, width, height);
-
-		// Draw the borders.
-		CGFloat outerLeft = left + 0.5f * lineWeight;
-		CGFloat outerRight = right - 0.5f * lineWeight;
-		CGFloat outerTop = top + 0.5f * lineWeight;
-		CGFloat outerBottom = bottom - 0.5f * lineWeight;
-		
-		CGFloat innerLeft = outerLeft;
-		CGFloat innerRight = outerRight;
-		CGFloat innerTop = top + 1.5f * lineWeight;
-		CGFloat innerBottom = bottom - 1.5f * lineWeight;
-
-		CGFloat _cornerRadius = self.cornerRadius;
-		WLRoundedCornerPositions _roundedCornerPositions = self.roundedCornerPositions;
-
-		BOOL hasLeftTopRoundedCorner = _cornerRadius > 0.f && (_roundedCornerPositions & WLRoundedCornerLeftTop);
-		BOOL hasLeftBottomRoundedCorner = _cornerRadius > 0.f && (_roundedCornerPositions & WLRoundedCornerLeftBottom);
-		BOOL hasRightTopRoundedCorner = _cornerRadius > 0.f && (_roundedCornerPositions & WLRoundedCornerRightTop);
-		BOOL hasRightBottomRoundedCorner = _cornerRadius > 0.f && (_roundedCornerPositions & WLRoundedCornerRightBottom);
-		
-		// The dark boundary is around (outerLeft, outerTop), (outerRight, outerTop), (outerRight, innerBottom), (outerLeft, innerBottom).
-		
-		// Left border.
-		if (hasLeftTopRoundedCorner) {
-			CGContextMoveToPoint(context, outerLeft, top + 0.8f * _cornerRadius);
-		} else {
-			CGContextMoveToPoint(context, outerLeft, top);
+		if (_isFirst) {
+			roundingCorners |= UIRectCornerTopLeft | UIRectCornerBottomLeft;
 		}
-		
-		if (hasLeftBottomRoundedCorner) {
-			CGContextAddLineToPoint(context, outerLeft, innerBottom + 0.5f * lineWeight - 0.8f * _cornerRadius);
-		} else {
-			CGContextAddLineToPoint(context, outerLeft, innerBottom + 0.5f * lineWeight);
+		if (_isLast) {
+			roundingCorners |= UIRectCornerTopRight | UIRectCornerBottomRight;
 		}
-		
-		CGContextSetStrokeColorWithColor(context, _isFirst ? self.hOuterSideBorderColor.CGColor : self.hInnerSideBorderColor.CGColor);
-		CGContextStrokePath(context);		
-		
-		// Right border.
-		if (hasRightTopRoundedCorner) {
-			CGContextMoveToPoint(context, outerRight, top + 0.8f * _cornerRadius);
-		} else {
-			CGContextMoveToPoint(context, outerRight, top);
+	} else {
+		if (_isFirst) {
+			roundingCorners |= UIRectCornerTopLeft | UIRectCornerTopRight;
 		}
-		
-		if (hasRightBottomRoundedCorner) {
-			CGContextAddLineToPoint(context, outerRight, innerBottom + 0.5f * lineWeight - 0.8f * _cornerRadius);
-		} else {
-			CGContextAddLineToPoint(context, outerRight, innerBottom + 0.5f * lineWeight);
+		if (_isLast) {
+			roundingCorners |= UIRectCornerBottomLeft | UIRectCornerBottomRight;
 		}
-		
-		CGContextSetStrokeColorWithColor(context, _isLast ? self.hOuterSideBorderColor.CGColor : self.hInnerSideBorderColor.CGColor);
-		CGContextStrokePath(context);
-		
-		// Top outer border.
-		if (hasLeftTopRoundedCorner) {
-			CGContextMoveToPoint(context, outerLeft, outerTop + _cornerRadius);
-			CGContextAddArcToPoint(context, outerLeft, outerTop, outerRight, outerTop, _cornerRadius);
-		} else {
-			CGContextMoveToPoint(context, left, outerTop);
-		}
-		
-		if (hasRightTopRoundedCorner) {
-			CGContextAddArcToPoint(context, outerRight, outerTop, outerRight, outerBottom, _cornerRadius);
-		} else {
-			CGContextAddLineToPoint(context, right, outerTop);
-		}
-
-		CGContextSetStrokeColorWithColor(context, self.hTopOuterBorderColor.CGColor);
-		CGContextStrokePath(context);
-		
-		// Bottom outer border.
-		// Because the region below bottem outer border is not filled, if it is drawn from left to right, the two colors from adjacent segments will mix. So it is drawn from outerLeft to outerRight.
-		if (hasLeftBottomRoundedCorner) {
-			CGContextMoveToPoint(context, outerLeft, outerBottom - _cornerRadius);
-			CGContextAddArcToPoint(context, outerLeft, outerBottom, outerRight, outerBottom, _cornerRadius);
-		} else {
-			CGContextMoveToPoint(context, outerLeft, outerBottom);
-		}
-		
-		if (hasRightBottomRoundedCorner) {
-			CGContextAddArcToPoint(context, outerRight, outerBottom, outerRight, outerTop, _cornerRadius);
-		} else {
-			CGContextAddLineToPoint(context, outerRight, outerBottom);
-		}
-		
-		CGContextSetStrokeColorWithColor(context, self.hBottomOuterBorderColor.CGColor);
-		CGContextStrokePath(context);
-
-		// Top inner border.
-		if (hasLeftTopRoundedCorner) {
-			CGContextMoveToPoint(context, innerLeft, innerTop + _cornerRadius);
-			CGContextAddArcToPoint(context, innerLeft, innerTop, innerRight, innerTop, _cornerRadius);
-		} else {
-			CGContextMoveToPoint(context, left, innerTop);
-		}
-		
-		if (hasRightTopRoundedCorner) {
-			CGContextAddArcToPoint(context, innerRight, innerTop, innerRight, innerBottom, _cornerRadius);
-		} else {
-			CGContextAddLineToPoint(context, right, innerTop);
-		}
-		
-		CGContextSetStrokeColorWithColor(context, self.hTopInnerBorderColor.CGColor);
-		CGContextStrokePath(context);
-		
-		// Bottom inner border.
-		if (hasLeftBottomRoundedCorner) {
-			CGContextMoveToPoint(context, innerLeft, innerBottom - _cornerRadius);
-			CGContextAddArcToPoint(context, innerLeft, innerBottom, innerRight, innerBottom, _cornerRadius);
-		} else {
-			CGContextMoveToPoint(context, left, innerBottom);
-		}		
-
-		if (hasRightBottomRoundedCorner) {
-			CGContextAddArcToPoint(context, innerRight, innerBottom, innerRight, innerTop, _cornerRadius);
-		} else {
-			CGContextAddLineToPoint(context, right, innerBottom);
-		}
-		
-		CGContextSetStrokeColorWithColor(context, self.hBottomInnerBorderColor.CGColor);
-		CGContextStrokePath(context);
 	}
-	
-	else {
-		// Fill the region.
-		[super drawRect:rect];
+	path = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:roundingCorners cornerRadii:CGSizeMake(3.5f, 3.5f)];
 
-		// Draw the top and right border lines.
-		CGGradientRef darkGradient = self.vOuterBorderGradient;
-		CGGradientRef lightGradient;
-		if (self.selected) {
-			lightGradient = self.vSelectedInnerBorderGradient;
-		} else {
-			lightGradient = self.vInnterBorderGradient;
-		}	
-		
-		// The outer dark line.
-		CGContextMoveToPoint(context, left, top + 0.5f * lineWeight);
-		CGContextAddLineToPoint(context, right - 0.5f * lineWeight, top + 0.5f * lineWeight);
-		CGContextAddLineToPoint(context, right - 0.5f * lineWeight, bottom);
-		
-		CGContextReplacePathWithStrokedPath(context);
-		CGContextSaveGState(context);
-		CGContextClip(context);
-		CGContextDrawLinearGradient(context, darkGradient, CGPointMake(left + 0.5f * width, top), CGPointMake(left + 0.5f * width, bottom), 0);
-		
-		// The inner light line.	
-		CGContextRestoreGState(context);
-		CGContextSaveGState(context);
-		CGContextMoveToPoint(context, left, top + 1.5f * lineWeight);
-		CGContextAddLineToPoint(context, right - 1.5f * lineWeight, top + 1.5f * lineWeight);
-		CGContextAddLineToPoint(context, right - 1.5f * lineWeight, bottom);
-		
-		CGContextReplacePathWithStrokedPath(context);
-		CGContextClip(context);	
-		CGContextDrawLinearGradient(context, lightGradient, CGPointMake(left + 0.5f * width, top), CGPointMake(left + 0.5f * width, bottom), 0);
-		CGContextRestoreGState(context);
+	if (self.selected) {
+		[self.tintColor setFill];
+	} else {
+		[[self.tintColor transparentColor:0.15f] setFill];
 	}
-	
-}
+	[path fill];
 
-
-
-#pragma mark -
-#pragma mark Resizing Subviews
-
-- (CGSize)sizeThatFits:(CGSize)size {
-	CGSize sizeThatFits = [super sizeThatFits:size];
-	if (_tint) {
-		// Enlarge.
-		sizeThatFits.width += 16.f;
+	if (self.selected) {
+		CGContextRef context = UIGraphicsGetCurrentContext();
+		CGContextSetBlendMode(context, kCGBlendModeClear);
+		[self.titleLabel.attributedText drawAtPoint:self.titleLabel.frame.origin];
 	}
-	return sizeThatFits;
 }
-
-
-#pragma mark -
-#pragma mark Gradient Colors
-
-- (void)setNormalGradientLocations:(NSArray *)locations {
-	// Invalidate the cached gradient and redraw.
-	if (_vInnterBorderGradient != NULL) {
-		CGGradientRelease(_vInnterBorderGradient);
-		_vInnterBorderGradient = NULL;
-	}
-	if (_vOuterBorderGradient != NULL) {
-		CGGradientRelease(_vOuterBorderGradient);
-		_vOuterBorderGradient = NULL;
-	}
-	
-	[super setNormalGradientLocations:locations];	
-}
-
-- (void)setSelectedGradientLocations:(NSArray *)locations {
-	// Invalidate the cached gradient and redraw.
-	if (_vSelectedInnerBorderGradient != NULL) {
-		CGGradientRelease(_vSelectedInnerBorderGradient);
-		_vSelectedInnerBorderGradient = NULL;
-	}
-	
-	[super setSelectedGradientLocations:locations];
-}
-
-- (void)setNormalGradientColors:(NSArray *)colors {
-	// Invalidate the cached gradient and redraw.
-	if (_vInnterBorderGradient != NULL) {
-		CGGradientRelease(_vInnterBorderGradient);
-		_vInnterBorderGradient = NULL;
-	}
-	if (_vOuterBorderGradient != NULL) {
-		CGGradientRelease(_vOuterBorderGradient);
-		_vOuterBorderGradient = NULL;
-	}	
-	
-	if (_style == WLSegmentStyleHorizontal) {
-		UIColor *baseColor = [colors lastObject];
-		self.hTopOuterBorderColor = [[UIColor interpolatedColor:0.5f from:baseColor to:[UIColor blackColor]] transparentColor:0.7f];
-		self.hTopInnerBorderColor = [[UIColor interpolatedColor:0.1f from:baseColor to:[UIColor blackColor]] transparentColor:0.2f];
-		self.hBottomInnerBorderColor = [[UIColor interpolatedColor:0.5f from:baseColor to:[UIColor blackColor]] transparentColor:0.5f];
-		self.hBottomOuterBorderColor = [[UIColor interpolatedColor:0.75f from:baseColor to:[UIColor whiteColor]] transparentColor:0.2f];
-		self.hOuterSideBorderColor = [[UIColor interpolatedColor:0.5f from:baseColor to:[UIColor blackColor]] transparentColor:0.4f];
-		self.hInnerSideBorderColor = [[UIColor interpolatedColor:0.2f from:baseColor to:[UIColor blackColor]] transparentColor:0.7f];
-	}
-	
-	[super setNormalGradientColors:colors];
-}
-
-- (void)setSelectedGradientColors:(NSArray *)colors {
-	// Invalidate the cached gradient and redraw.
-	if (_vSelectedInnerBorderGradient != NULL) {
-		CGGradientRelease(_vSelectedInnerBorderGradient);
-		_vSelectedInnerBorderGradient = NULL;
-	}
-	
-	[super setSelectedGradientColors:colors];
-}
-
-
-//- (CGGradientRef)hOuterBorderGradient {
-//	static CGFloat const darkDeltaTable[4] = { 0.407, 0.184, 0.169, 0.095 };
-//	static CGFloat const brightDeltaTable[4] = { 0.600, 0.350, 0.350, 0.300};
-//	
-//    if (_hOuterBorderGradient == NULL)
-//    {
-//        NSUInteger locCount = [self.normalGradientLocations count];
-//        CGFloat locations[locCount];
-//        for (size_t i = 0; i < locCount; i++)
-//        {
-//            NSNumber *location = [self.normalGradientLocations objectAtIndex:i];
-//            locations[i] = [location floatValue];
-//        }
-//        
-//		CGFloat const *deltaTable = [[self.normalGradientColors lastObject] brightness] > 0.5 ? brightDeltaTable : darkDeltaTable;
-//		CFMutableArrayRef colorArray = CFArrayCreateMutable(NULL, self.normalGradientColors.count, NULL);
-//		for (size_t i = 0; i < self.normalGradientColors.count; ++i) {
-//			UIColor *color = (UIColor *)[self.normalGradientColors objectAtIndex:i];
-//			CFArrayAppendValue(colorArray, [color darkerColor:deltaTable[i]].CGColor);
-//		}
-//        CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
-//        _hOuterBorderGradient = CGGradientCreateWithColors(space, colorArray, locCount > 0 ? locations : NULL);
-//        CGColorSpaceRelease(space);
-//        CFRelease(colorArray);
-
-//    }
-//    return _hOuterBorderGradient;	
-//}
-//
-//- (CGGradientRef)hSelectedOuterBorderGradient {
-//	static CGFloat const darkDeltaTable[4] = { 0.363, 0.091, 0.114, 0.067 };
-//	static CGFloat const brightDeltaTable[4] = { 0.500, 0.160, 0.175, 0.150 };
-//	
-//    if (_hSelectedOuterBorderGradient == NULL)
-//    {
-//        NSUInteger locCount = [self.selectedGradientLocations count];
-//        CGFloat locations[locCount];
-//        for (size_t i = 0; i < locCount; i++)
-//        {
-//            NSNumber *location = [self.selectedGradientLocations objectAtIndex:i];
-//            locations[i] = [location floatValue];
-//        }
-//        
-//		CGFloat const *deltaTable = [[self.normalGradientColors lastObject] brightness] > 0.5 ? brightDeltaTable : darkDeltaTable;
-//		CFMutableArrayRef colorArray = CFArrayCreateMutable(NULL, _selectedGradientColors.count, NULL);
-//		for (size_t i = 0; i < _selectedGradientColors.count; ++i) {
-//			UIColor *color = (UIColor *)[_selectedGradientColors objectAtIndex:i];
-//			CFArrayAppendValue(colorArray, [color darkerColor:deltaTable[i]].CGColor);
-//		}
-//        CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
-//        _hSelectedOuterBorderGradient = CGGradientCreateWithColors(space, colorArray, locCount > 0 ? locations : NULL);
-//        CGColorSpaceRelease(space);
-//		  CFRelease(colorArray);
-//    }
-//    return _hSelectedOuterBorderGradient;	
-//}
-
-- (CGGradientRef)vOuterBorderGradient {
-    if (_vOuterBorderGradient == NULL)
-    {
-        NSUInteger locCount = [self.normalGradientLocations count];
-        CGFloat locations[locCount];
-        for (size_t i = 0; i < locCount; i++)
-        {
-            NSNumber *location = (self.normalGradientLocations)[i];
-            locations[i] = [location floatValue];
-        }
-        CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
-        
-		CFMutableArrayRef colorArray = CFArrayCreateMutable(NULL, self.normalGradientColors.count, NULL);
-		for (UIColor *color in self.normalGradientColors) {
-			CFArrayAppendValue(colorArray, [color darkerColor:0.3f].CGColor);
-		}
-        _vOuterBorderGradient = CGGradientCreateWithColors(space, colorArray, locCount > 0 ? locations : NULL);
-		CFRelease(colorArray);
-        CGColorSpaceRelease(space);
-    }
-    return _vOuterBorderGradient;
-}
-
-- (CGGradientRef)vInnterBorderGradient {
-    if (_vInnterBorderGradient == NULL)
-    {
-        NSUInteger locCount = [self.normalGradientLocations count];
-        CGFloat locations[locCount];
-        for (size_t i = 0; i < locCount; i++)
-        {
-            NSNumber *location = (self.normalGradientLocations)[i];
-            locations[i] = [location floatValue];
-        }
-        CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
-        
-		CFMutableArrayRef colorArray = CFArrayCreateMutable(NULL, self.normalGradientColors.count, NULL);
-		for (UIColor *color in self.normalGradientColors) {
-			CFArrayAppendValue(colorArray, [color brighterColor:0.20f].CGColor);
-		}
-        _vInnterBorderGradient = CGGradientCreateWithColors(space, colorArray, locCount > 0 ? locations : NULL);
-		CFRelease(colorArray);
-        CGColorSpaceRelease(space);
-    }
-    return _vInnterBorderGradient;
-}
-
-- (CGGradientRef)vSelectedInnerBorderGradient {
-    
-    if (_vSelectedInnerBorderGradient == NULL)
-    {
-		NSUInteger locCount = [self.selectedGradientLocations count];
-        CGFloat locations[locCount];
-        for (size_t i = 0; i < locCount; i++)
-        {
-            NSNumber *location = (self.selectedGradientLocations)[i];
-            locations[i] = [location floatValue];
-        }
-        CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
-		
-		CFMutableArrayRef colorArray = CFArrayCreateMutable(NULL, self.selectedGradientColors.count, NULL);
-		for (UIColor *color in self.selectedGradientColors) {
-			CFArrayAppendValue(colorArray, [color brighterColor:0.15f].CGColor);
-		}
-		
-        _vSelectedInnerBorderGradient = CGGradientCreateWithColors(space, colorArray, locCount > 0 ? locations : NULL);
-		CFRelease(colorArray);
-        CGColorSpaceRelease(space);
-    }
-    return _vSelectedInnerBorderGradient;
-}
-
-
-
-
-
-#pragma mark -
-#pragma mark State control
-
-- (void)setHighlighted:(BOOL)flag {
-	// Segments only have two state - normal and selected.
-}
-
 
 @end

@@ -12,18 +12,13 @@
 
 @interface WLSegmentedControl : UIControl {
 	NSMutableArray *_segments;
-	UIColor *_tintColor;
-	
-@private
-	NSInteger _selectedSegmentIndex;
-	NSMutableIndexSet *_selectedSegmentIndice;
-	BOOL _allowsMultiSelection;
 }
 
 //////////////////////////////////////////////////////////////////////////////
 /// @name Initializing a Segmented Control
 //////////////////////////////////////////////////////////////////////////////
 /// @{
+
 /**
  Initializes and returns a segmented control with segments having the given titles or images.
  
@@ -44,6 +39,8 @@
 - (id)initWithImages:(NSArray *)images selectedImages:(NSArray *)selectedImages;
 
 - (id)initWithItems:(NSArray *)items;
+
+- (id)initWithFrame:(CGRect)frame __attribute__((unavailable("Use '-initWithItems:…' instead.")));
 /// @}
 
 //////////////////////////////////////////////////////////////////////////////
@@ -70,17 +67,8 @@
 @property(nonatomic, copy) NSIndexSet *selectedSegmentIndice; ///< The indice of the selected segments. It is undefined if @c allowsMultiSelection is @c NO
 /// @}
 
-
-//////////////////////////////////////////////////////////////////////////////
-/// @name Managing Segment Behavior and Appearance
-//////////////////////////////////////////////////////////////////////////////
-/// @{
-@property(nonatomic, retain) UIColor *tintColor; ///< The tint color of the segmented control. Must be RGBA color.
-/// @}
-
-
-
 // Protected.
+- (id)_initWithItems:(NSArray *)items selectedItems:(NSArray *)selectedItems backgroundImages:(NSArray *)backgroundImages selectedBackgroundImages:(NSArray *)selectedBackgroundImages tint:(BOOL)tint;
 - (void)_didTapItem:(WLSegment *)sender;
 
 

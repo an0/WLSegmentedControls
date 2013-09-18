@@ -9,10 +9,6 @@
 #import "WLSegmentedControl.h"
 
 
-@interface WLHorizontalSegmentedControl : WLSegmentedControl {
-@private
-	NSArray *_normalGradientColors;
-	NSArray *_selectedGradientColors;
-}
+@interface WLHorizontalSegmentedControl : WLSegmentedControl 
 
 @end

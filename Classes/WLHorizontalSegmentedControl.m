@@ -6,207 +6,73 @@
 //  Copyright 2010 I Wonder Phone. All rights reserved.
 //
 
-#import "WLSegmentedControl+Private.h"
 #import "WLHorizontalSegmentedControl.h"
-#import "UIColor+WLExtension.h"
-
-
-@interface WLHorizontalSegmentedControl ()
-
-@property(nonatomic, copy) NSArray *normalGradientColors;
-@property(nonatomic, copy) NSArray *selectedGradientColors;
-
-- (void)tintSegments;
-
-@end
-
-
-
-#pragma mark -
 
 @implementation WLHorizontalSegmentedControl
 
-@synthesize normalGradientColors = _normalGradientColors;
-@synthesize selectedGradientColors = _selectedGradientColors;
-
-#pragma mark -
-#pragma mark Default gradient color with tintColor = nil
-
-+ (NSArray *)defaultNormalGradientColors {
-	static NSArray *defaultNormalGradientColors = nil;
-	if (defaultNormalGradientColors == nil) {
-		defaultNormalGradientColors = @[[UIColor colorWithRed:0.639f green:0.698f blue:0.765f alpha:1.000f],
-									   [UIColor colorWithRed:0.475f green:0.557f blue:0.667f alpha:1.000f],
-									   [UIColor colorWithRed:0.420f green:0.514f blue:0.631f alpha:1.000f],
-									   [UIColor colorWithRed:0.431f green:0.522f blue:0.639f alpha:1.000f]];		
-	}
-	return defaultNormalGradientColors;
-}
-
-+ (NSArray *)defaultSelectedGradientColors {
-	static NSArray *defaultSelectedGradientColor = nil;
-	if (defaultSelectedGradientColor == nil) {
-		defaultSelectedGradientColor = @[[UIColor colorWithRed:0.556f green:0.636f blue:0.751f alpha:1.000f],
-										[UIColor colorWithRed:0.345f green:0.467f blue:0.635f alpha:1.000f],
-										[UIColor colorWithRed:0.282f green:0.416f blue:0.596f alpha:1.000f],
-										[UIColor colorWithRed:0.282f green:0.416f blue:0.596f alpha:1.000f]];			
-	}
-	return defaultSelectedGradientColor;
-}
-
-#pragma mark -
-#pragma mark Creating, Copying, and Deallocating
-
-- (id)initWithFrame:(CGRect)frame {
-    if ((self = [super initWithFrame:frame])) {
-		self.normalGradientColors = [WLHorizontalSegmentedControl defaultNormalGradientColors];
-		self.selectedGradientColors = [WLHorizontalSegmentedControl defaultSelectedGradientColors];
-    }
-    return self;
-}
-
 - (id)_initWithItems:(NSArray *)items selectedItems:(NSArray *)selectedItems backgroundImages:(NSArray *)backgroundImages selectedBackgroundImages:(NSArray *)selectedBackgroundImages tint:(BOOL)tint {
 	if ((self = [super _initWithItems:items selectedItems:selectedItems backgroundImages:backgroundImages selectedBackgroundImages:selectedBackgroundImages tint:tint])) {
-		CGFloat maxHeight = 0.f;
-		CGFloat maxWidth = 0.f;
-		_segments = [[NSMutableArray alloc] initWithCapacity:[items count]];
-		for (NSUInteger i = 0; i < [items count]; ++i) {
-			id item = items[i];
-			id selectedItem = selectedItems[i];
-			UIImage *backgroundImage = backgroundImages[i];
-			UIImage *selectedBackgroundImage = selectedBackgroundImages[i];
-			WLSegment *segment = [[WLSegment alloc] initWithItem:item selectedItem:selectedItem backgroundImage:backgroundImage selectedBackgroundImage:selectedBackgroundImage style:WLSegmentStyleHorizontal tint:tint];
-			segment.selectedGradientLocations = segment.normalGradientLocations = @[@0.f, @0.5f, @0.5f, @1.f];
-			segment.contentMode = UIViewContentModeRedraw;
-			[segment sizeToFit];
-			maxWidth = MAX(maxWidth, segment.frame.size.width);
-			maxHeight = MAX(maxHeight, segment.frame.size.height);
+		NSUInteger itemCount = items.count;
+		_segments = [[NSMutableArray alloc] initWithCapacity:itemCount];
+		__block WLSegment *prevSegment;
+		[items enumerateObjectsUsingBlock:^(id item, NSUInteger idx, BOOL *stop) {
+			id selectedItem = selectedItems[idx];
+			UIImage *backgroundImage = backgroundImages[idx];
+			UIImage *selectedBackgroundImage = selectedBackgroundImages[idx];
+			WLSegment *segment = [WLSegment segmentWithItem:item selectedItem:selectedItem backgroundImage:backgroundImage selectedBackgroundImage:selectedBackgroundImage style:WLSegmentStyleHorizontal tint:tint];
+			if (tint) {
+				segment.contentMode = UIViewContentModeRedraw;
+			}
 			[self addSubview:segment];
-			[segment addTarget:self action:@selector(_didTapItem:) forControlEvents:UIControlEventTouchDown];
+			[segment addTarget:self action:@selector(_didTapItem:) forControlEvents:UIControlEventTouchUpInside];
 			[_segments addObject:segment];
-		}
-		
-		if (_segments.count > 0) {
-			// The first and last segment have rounded corners.
-			WLSegment *firstSegment = _segments[0];
-			firstSegment.isFirst = YES;
-			firstSegment.cornerRadius = 5.f;
-			firstSegment.roundedCornerPositions = WLRoundedCornerLeftTop | WLRoundedCornerLeftBottom;
-			
-			WLSegment *lastSegment = [_segments lastObject];
-			lastSegment.isLast = YES;
-			lastSegment.cornerRadius = 5.f;
-			lastSegment.roundedCornerPositions = WLRoundedCornerRightTop | WLRoundedCornerRightBottom;
-		}
-		
-		
-		CGRect frame = self.frame;
-		// Make segments have a uniform width and merge adjacent borders.
-		frame.size.width = maxWidth * _segments.count - (_segments.count - 1);
-		frame.size.height = MAX(maxHeight, 30.f);
-		self.frame = frame;
-		
-		// Horizontally layout segments.
-		CGFloat segmentWidth = maxWidth; // Uniformly distribute the width among segments, considering the merged adjacent borders.
-		CGFloat segmentHeight = self.bounds.size.height;
-		CGFloat x = 0.f;
-		for (WLSegment *segment in _segments) {
-			CGRect segmentFrame = segment.frame;
-			segmentFrame.origin.x = x;
-			segmentFrame.origin.y = 0.f;
-			segmentFrame.size.width = segmentWidth;
-			segmentFrame.size.height = segmentHeight;
-			segment.frame = segmentFrame;
-			segment.autoresizingMask =
-			UIViewAutoresizingFlexibleWidth | 
-			UIViewAutoresizingFlexibleHeight | 
-			UIViewAutoresizingFlexibleTopMargin | 
-			UIViewAutoresizingFlexibleBottomMargin | 
-			UIViewAutoresizingFlexibleLeftMargin | 
-			UIViewAutoresizingFlexibleRightMargin;
-			
-			x += segmentFrame.size.width - 1.f; // Merge adjacent borders.
-		}
-		
-		[self tintSegments];
+
+			segment.translatesAutoresizingMaskIntoConstraints = NO;
+			NSDictionary *viewDict = NSDictionaryOfVariableBindings(segment);
+			[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[segment]|" options:0 metrics:nil views:viewDict]];
+			if (prevSegment) {
+				[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[prevSegment]-1-[segment(==prevSegment)]" options:kNilOptions metrics:nil views:NSDictionaryOfVariableBindings(prevSegment, segment)]];
+			}
+			prevSegment = segment;
+			if (idx == 0) {
+				segment.isFirst = YES;
+				[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[segment]" options:kNilOptions metrics:nil views:viewDict]];
+			}
+			if (idx == itemCount - 1) {
+				segment.isLast = YES;
+				[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[segment]|" options:kNilOptions metrics:nil views:viewDict]];
+			}
+		}];
+		[self sizeToFit];
 	}
 	
 	return self;
 }
 
-
-
-#pragma mark -
-#pragma mark Resizing Subviews
-
 - (CGSize)sizeThatFits:(CGSize)size {
-	return size;
-}
-
-
-
-#pragma mark -
-#pragma mark Managing Segment Behavior and Appearance
-
-- (void)setTintColor:(UIColor *)color {
-	if (_tintColor == color) {
-		return;
-	}
-	
-	_tintColor = color;
-	
-	// Recolor.
-	if (_tintColor) {
-		//		CGFloat brightness = [_tintColor brightness];
-		//		CGFloat saturation = [_tintColor saturation];
-		self.normalGradientColors = @[[_tintColor tintColor],
-									 [UIColor interpolatedColor:0.1f from:_tintColor to:[UIColor whiteColor]],
-									 _tintColor,
-									 _tintColor];
-		
-		UIColor *selectedBaseColor = [UIColor interpolatedColor:0.12f from:_tintColor to:[UIColor whiteColor]];
-		self.selectedGradientColors = @[[selectedBaseColor tintColor],
-									   [UIColor interpolatedColor:0.1f from:selectedBaseColor to:[UIColor whiteColor]],
-									   selectedBaseColor,
-									   selectedBaseColor];		
-	} else {
-		self.normalGradientColors = [WLHorizontalSegmentedControl defaultNormalGradientColors];
-		self.selectedGradientColors = [WLHorizontalSegmentedControl defaultSelectedGradientColors];
-	}
-	
-	[self tintSegments];
-}
-
-- (void)tintSegments {
-	UIColor *normalTopColor = _normalGradientColors[0];
-	UIColor *normalTopMiddleColor = _normalGradientColors[1];
-	UIColor *normalBottomMiddleColor = _normalGradientColors[2];
-	UIColor *normalBottomColor = _normalGradientColors[3];
-	UIColor *selectedTopColor = _selectedGradientColors[0];
-	UIColor *selectedTopMiddleColor = _selectedGradientColors[1];
-	UIColor *selectedBottomMiddleColor = _selectedGradientColors[2];
-	UIColor *selectedBottomColor = _selectedGradientColors[3];
-	
+	CGSize fittingSize;
+	CGFloat maxWidth = 0., maxHeight = 0.;
 	for (WLSegment *segment in _segments) {
-		segment.normalGradientColors = @[normalTopColor, normalTopMiddleColor, normalBottomMiddleColor, normalBottomColor];
-		segment.selectedGradientColors = @[selectedTopColor, selectedTopMiddleColor, selectedBottomMiddleColor, selectedBottomColor];
-	}	
-}
-
-
-- (void)setFrame:(CGRect)frame {
-	// Adjust the corner radius proportionately.
-	if (_segments.count > 0) {
-		// The first and last segment have rounded corners.
-		WLSegment *firstSegment = _segments[0];
-		firstSegment.cornerRadius = frame.size.height / 6;
-		
-		WLSegment *lastSegment = [_segments lastObject];
-		lastSegment.cornerRadius = frame.size.height / 6;
+		CGSize segmentSize = [segment sizeThatFits:size];
+		maxWidth = MAX(maxWidth, segmentSize.width);
+		maxHeight = MAX(maxHeight, segmentSize.height);
 	}
-	
-	[super setFrame:frame];
+	fittingSize.width = maxWidth * _segments.count + 1. * (_segments.count - 1);
+	fittingSize.height = MAX(maxHeight, 29.);
+	return fittingSize;
 }
 
+- (CGSize)intrinsicContentSize {
+	CGSize intrinsicSize;
+	CGFloat maxWidth = 0., maxHeight = 0.;
+	for (WLSegment *segment in _segments) {
+		CGSize segmentSize = [segment intrinsicContentSize];
+		maxWidth = MAX(maxWidth, segmentSize.width);
+		maxHeight = MAX(maxHeight, segmentSize.height);
+	}
+	intrinsicSize.width = maxWidth * _segments.count + 1. * (_segments.count - 1);
+	intrinsicSize.height = MAX(maxHeight, 29.);
+	return intrinsicSize;
+}
 
 @end

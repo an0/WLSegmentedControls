@@ -9,60 +9,37 @@
 #import "WLSegmentedControl.h"
 
 
-@implementation WLSegmentedControl
-
-
-
-@synthesize tintColor = _tintColor;
-@synthesize selectedSegmentIndex = _selectedSegmentIndex;
-@synthesize selectedSegmentIndice = _selectedSegmentIndice;
-@synthesize allowsMultiSelection = _allowsMultiSelection;
-
-
-
-#pragma mark -
-#pragma mark Creating, Copying, and Deallocating
-
-- (id)initWithFrame:(CGRect)frame {
-    if ((self = [super initWithFrame:frame])) {
-		// Default selection is none.
-		_selectedSegmentIndex = UISegmentedControlNoSegment;
-    }
-    return self;
+@implementation WLSegmentedControl {
+	BOOL _tint;
+	NSMutableIndexSet *_selectedSegmentIndice;
 }
+
+#pragma mark - Lifetime
 
 - (id)_initWithItems:(NSArray *)items selectedItems:(NSArray *)selectedItems backgroundImages:(NSArray *)backgroundImages selectedBackgroundImages:(NSArray *)selectedBackgroundImages tint:(BOOL)tint {
-	if ((self = [self initWithFrame:CGRectZero])) {
-		
-	}
-	return self;	
-}
-
-- (id)initWithItems:(NSArray *)items selectedItems:(NSArray *)selectedItems backgroundImages:(NSArray *)backgroundImages selectedBackgroundImages:(NSArray *)selectedBackgroundImages {
-	if ((self = [self _initWithItems:items selectedItems:selectedItems backgroundImages:backgroundImages selectedBackgroundImages:selectedBackgroundImages tint:(backgroundImages == nil)])) {
-		
-	}
-	return self;	
-}
-
-- (id)initWithImages:(NSArray *)images selectedImages:(NSArray *)selectedImages {
-	if ((self = [self _initWithItems:images selectedItems:selectedImages backgroundImages:nil selectedBackgroundImages:nil tint:NO])) {
-		
-	}
-	return self;	
-}
-
-- (id)initWithItems:(NSArray *)items {
-	if ((self = [self initWithItems:items selectedItems:nil backgroundImages:nil selectedBackgroundImages:nil])) {
-		
+	self = [super init];
+	if (self) {
+		self.backgroundColor = [UIColor clearColor];
+		_tint = tint;
+		// Default selection is none.
+		_selectedSegmentIndex = UISegmentedControlNoSegment;
 	}
 	return self;
 }
 
+- (id)initWithItems:(NSArray *)items selectedItems:(NSArray *)selectedItems backgroundImages:(NSArray *)backgroundImages selectedBackgroundImages:(NSArray *)selectedBackgroundImages {
+	return [self _initWithItems:items selectedItems:selectedItems backgroundImages:backgroundImages selectedBackgroundImages:selectedBackgroundImages tint:(backgroundImages == nil)];
+}
 
+- (id)initWithImages:(NSArray *)images selectedImages:(NSArray *)selectedImages {
+	return [self _initWithItems:images selectedItems:selectedImages backgroundImages:nil selectedBackgroundImages:nil tint:NO];
+}
 
-#pragma mark -
-#pragma mark Managing Segment Content
+- (id)initWithItems:(NSArray *)items {
+	return [self initWithItems:items selectedItems:nil backgroundImages:nil selectedBackgroundImages:nil];
+}
+
+#pragma mark - Managing Segment Content
 
 - (void)setImage:(UIImage *)image forSegmentAtIndex:(NSUInteger)segment {
 	[(WLSegment *)_segments[segment] setImage:image forState:UIControlStateNormal];
@@ -96,30 +73,27 @@
 	return [(WLSegment *)_segments[segment] titleForState:UIControlStateSelected];	
 }
 
+#pragma mark - Managing Segments
 
+- (void)setAllowsMultiSelection:(BOOL)allowsMultiSelection {
+	if (_allowsMultiSelection == allowsMultiSelection) return;
 
-#pragma mark -
-#pragma mark Managing Segments
+	_allowsMultiSelection = allowsMultiSelection;
 
-- (void)setAllowsMultiSelection:(BOOL)flag {
-	if (flag && !_allowsMultiSelection) {
+	if (allowsMultiSelection) {
 		if (self.selectedSegmentIndex != UISegmentedControlNoSegment) {
 			self.selectedSegmentIndice = [NSMutableIndexSet indexSetWithIndex:self.selectedSegmentIndex];
 		} else {
 			self.selectedSegmentIndice = [NSMutableIndexSet indexSet];
 		}
-		_allowsMultiSelection = flag;
-	} else if (!flag && _allowsMultiSelection) {
+	} else {
 		self.selectedSegmentIndice = nil;
 		self.selectedSegmentIndex = UISegmentedControlNoSegment;
-		_allowsMultiSelection = flag;
 	}
 }
 
 - (void)setSelectedSegmentIndex:(NSInteger)index {
-	if (_selectedSegmentIndex == index) {
-		return;
-	}
+	if (_selectedSegmentIndex == index) return;
 	
 	if (_selectedSegmentIndex != UISegmentedControlNoSegment) {
 		WLSegment *selectedSegment = _segments[_selectedSegmentIndex];
@@ -139,15 +113,14 @@
 }
 
 - (void)setSelectedSegmentIndice:(NSIndexSet *)indexSet {
-	if ([_selectedSegmentIndice isEqualToIndexSet:indexSet]) {
-		return;
-	}
+	if ([_selectedSegmentIndice isEqualToIndexSet:indexSet]) return;
 	
 	[_selectedSegmentIndice enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
 		WLSegment *selectedSegment = _segments[idx];
 		selectedSegment.selected = NO;		
 		[self sendSubviewToBack:selectedSegment];
 	}];
+
 	[indexSet enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
 		WLSegment *segmentToSelect = _segments[idx];
 		segmentToSelect.selected = YES;
@@ -177,11 +150,27 @@
 	[self sendActionsForControlEvents:UIControlEventValueChanged];
 }
 
+#pragma mark - Tint
 
+- (void)setTintColor:(UIColor *)tintColor {
+	[super setTintColor:tintColor];
 
+	for (WLSegment *segment in _segments) {
+		segment.tintColor = tintColor;
+	}
+}
 
-#pragma mark -
-#pragma mark Responding to Selection Events
+- (void)drawRect:(CGRect)rect {
+	if (!_tint) return;
+
+	CGFloat lineWidth = 1.;
+	UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectInset(self.bounds, lineWidth / 2, lineWidth / 2) byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(3.5f, 3.5f)];
+	path.lineWidth = lineWidth;
+	[self.tintColor setStroke];
+	[path stroke];
+}
+
+#pragma mark - Responding to Selection Events
 
 - (void)_didTapItem:(WLSegment *)sender {
 	NSUInteger index = [_segments indexOfObject:sender];
@@ -195,7 +184,5 @@
 		self.selectedSegmentIndex = index;
 	}	
 }
-
-
 
 @end
