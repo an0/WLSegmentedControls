@@ -57,8 +57,8 @@
 		maxWidth = MAX(maxWidth, segmentSize.width);
 		maxHeight = MAX(maxHeight, segmentSize.height);
 	}
-	fittingSize.width = maxWidth * _segments.count + 1. * (_segments.count - 1);
-	fittingSize.height = MAX(maxHeight, 29.);
+	fittingSize.width = maxWidth * _segments.count + 1 * (_segments.count - 1);
+	fittingSize.height = MAX(maxHeight, 29);
 	return fittingSize;
 }
 
@@ -70,8 +70,8 @@
 		maxWidth = MAX(maxWidth, segmentSize.width);
 		maxHeight = MAX(maxHeight, segmentSize.height);
 	}
-	intrinsicSize.width = maxWidth * _segments.count + 1. * (_segments.count - 1);
-	intrinsicSize.height = MAX(maxHeight, 29.);
+	intrinsicSize.width = maxWidth * _segments.count + 1 * (_segments.count - 1);
+	intrinsicSize.height = MAX(maxHeight, 29);
 	return intrinsicSize;
 }
 
