@@ -8,7 +8,6 @@
 
 #import "WLSegmentedControl.h"
 
-
 @implementation WLSegmentedControl {
 	BOOL _tint;
 	NSMutableIndexSet *_selectedSegmentIndice;
@@ -20,6 +19,7 @@
 	self = [super init];
 	if (self) {
 		self.backgroundColor = [UIColor clearColor];
+        self.contentMode = UIViewContentModeRedraw;
 		_tint = tint;
 		// Default selection is none.
 		_selectedSegmentIndex = UISegmentedControlNoSegment;
@@ -74,6 +74,13 @@
 }
 
 #pragma mark - Managing Segments
+
+- (void)setEnabled:(BOOL)enabled {
+    [super setEnabled:enabled];
+    for (WLSegment *segment in _segments) {
+        segment.enabled = enabled;
+    }
+}
 
 - (void)setAllowsMultiSelection:(BOOL)allowsMultiSelection {
 	if (_allowsMultiSelection == allowsMultiSelection) return;
@@ -166,7 +173,11 @@
 	CGFloat lineWidth = 1.;
 	UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectInset(self.bounds, lineWidth / 2, lineWidth / 2) byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(3.5f, 3.5f)];
 	path.lineWidth = lineWidth;
-	[self.tintColor setStroke];
+    if (self.enabled) {
+        [self.tintColor setStroke];
+    } else {
+        [[self.tintColor colorWithAlphaComponent:(CGFloat)0.50] setStroke];
+    }
 	[path stroke];
 }
 

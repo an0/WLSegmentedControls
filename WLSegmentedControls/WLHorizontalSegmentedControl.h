@@ -8,7 +8,6 @@
 
 #import "WLSegmentedControl.h"
 
-
 @interface WLHorizontalSegmentedControl : WLSegmentedControl 
 
 @end

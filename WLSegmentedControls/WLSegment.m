@@ -7,13 +7,11 @@
 //
 
 #import "WLSegment.h"
-#import "UIColor+WLExtension.h"
-
 
 @interface WLSegment () {
 	WLSegmentStyle _style;
 	BOOL _tint;
-	UIImageView *_divider;
+	UIView *_divider;
 }
 
 @end
@@ -22,7 +20,7 @@
 
 + (instancetype)segmentWithItem:(id)item selectedItem:(id)selectedItem backgroundImage:(UIImage *)backgroundImage selectedBackgroundImage:(UIImage *)selectedBackgroundImage style:(WLSegmentStyle)style tint:(BOOL)tint {
 	WLSegment *segment = [self buttonWithType:UIButtonTypeCustom];
-	segment.contentEdgeInsets = UIEdgeInsetsMake(6., 6., 6., 6.);
+	segment.contentEdgeInsets = UIEdgeInsetsMake(6, 6, 6, 6);
 	if (segment) {
 		if ([item isKindOfClass:[UIImage class]]) {
 			[segment setImage:item forState:UIControlStateNormal];
@@ -46,27 +44,27 @@
 			}			
 		}
 
-		segment.titleLabel.font = [UIFont systemFontOfSize:13.];
+		segment.titleLabel.font = [UIFont systemFontOfSize:13];
 
 		segment->_style = style;
 		segment->_tint = tint;
 
-		UIImageView *divider = [UIImageView new];
+		UIView *divider = [UIView new];
 		[segment addSubview:divider];
 		divider.translatesAutoresizingMaskIntoConstraints = NO;
 		switch (style) {
 			case WLSegmentStyleHorizontal:
-				[divider addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1. constant:1.]];
-				[segment addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:segment attribute:NSLayoutAttributeRight multiplier:1. constant:0.]];
-				[segment addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:segment attribute:NSLayoutAttributeTop multiplier:1. constant:0.]];
-				[segment addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:segment attribute:NSLayoutAttributeBottom multiplier:1. constant:0.]];
+				[divider addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:1]];
+				[segment addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:segment attribute:NSLayoutAttributeRight multiplier:1 constant:0]];
+				[segment addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:segment attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
+				[segment addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:segment attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
 				break;
 
 			case WLSegmentStyleVertical:
-				[divider addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1. constant:1.]];
-				[segment addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:segment attribute:NSLayoutAttributeBottom multiplier:1. constant:0.]];
-				[segment addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:segment attribute:NSLayoutAttributeLeading multiplier:1. constant:0.]];
-				[segment addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:segment attribute:NSLayoutAttributeTrailing multiplier:1. constant:0.]];
+				[divider addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:1]];
+				[segment addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:segment attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
+				[segment addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:segment attribute:NSLayoutAttributeLeading multiplier:1 constant:0]];
+				[segment addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:segment attribute:NSLayoutAttributeTrailing multiplier:1 constant:0]];
 				break;
 		}
 		segment->_divider = divider;
@@ -80,6 +78,7 @@
 	[super setTintColor:tintColor];
 
 	[self setTitleColor:tintColor forState:UIControlStateNormal];
+	[self setTitleColor:[tintColor colorWithAlphaComponent:(CGFloat)0.50] forState:UIControlStateDisabled];
 	_divider.backgroundColor = tintColor;
 }
 
@@ -88,6 +87,16 @@
 
 	_isLast = isLast;
 	_divider.hidden = _isLast;
+}
+
+- (void)setEnabled:(BOOL)enabled {
+    [super setEnabled:enabled];
+    
+    if (enabled) {
+        _divider.backgroundColor = self.tintColor;
+    } else {
+        _divider.backgroundColor = [self.tintColor colorWithAlphaComponent:(CGFloat)0.50];
+    }
 }
 
 - (void)setHighlighted:(BOOL)highlighted {
@@ -121,19 +130,23 @@
 			roundingCorners |= UIRectCornerBottomLeft | UIRectCornerBottomRight;
 		}
 	}
-	path = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:roundingCorners cornerRadii:CGSizeMake(3.5f, 3.5f)];
+	path = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:roundingCorners cornerRadii:CGSizeMake(3.5, 3.5)];
 
 	if (self.selected) {
-		[self.tintColor setFill];
+        if (self.enabled) {
+            [self.tintColor setFill];
+        } else {
+            [[self.tintColor colorWithAlphaComponent:(CGFloat)0.50] setFill];
+        }
 	} else {
-		[[self.tintColor transparentColor:0.15f] setFill];
+		[[self.tintColor colorWithAlphaComponent:(CGFloat)0.15] setFill];
 	}
 	[path fill];
 
 	if (self.selected) {
 		CGContextRef context = UIGraphicsGetCurrentContext();
 		CGContextSetBlendMode(context, kCGBlendModeClear);
-		[self.titleLabel.attributedText drawAtPoint:self.titleLabel.frame.origin];
+		[self.titleLabel.attributedText drawInRect:self.titleLabel.frame];
 	}
 }
 
