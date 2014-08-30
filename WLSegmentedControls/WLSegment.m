@@ -55,7 +55,7 @@
 		switch (style) {
 			case WLSegmentStyleHorizontal:
 				[divider addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:1]];
-				[segment addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:segment attribute:NSLayoutAttributeRight multiplier:1 constant:0]];
+				[segment addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:segment attribute:NSLayoutAttributeTrailing multiplier:1 constant:0]];
 				[segment addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:segment attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
 				[segment addConstraint:[NSLayoutConstraint constraintWithItem:divider attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:segment attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
 				break;
