@@ -130,7 +130,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0710;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "WLSegmentedControls" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -207,6 +207,7 @@
 				GCC_PREFIX_HEADER = WLSegmentedControls/WLSegmentedControls_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "WLSegmentedControls/WLSegmentedControls-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.moke.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = WLSegmentedControls;
 			};
 			name = Debug;
@@ -222,6 +223,7 @@
 				GCC_PREFIX_HEADER = WLSegmentedControls/WLSegmentedControls_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "WLSegmentedControls/WLSegmentedControls-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.moke.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = WLSegmentedControls;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -230,7 +232,6 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
@@ -239,6 +240,7 @@
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_WARN_STRICT_SELECTOR_MATCH = YES;
@@ -257,7 +259,6 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
