@@ -3,21 +3,53 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C91ADED117EBB76000DFEB1A /* WLHorizontalSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C91ADECA17EBB76000DFEB1A /* WLHorizontalSegmentedControl.m */; };
-		C91ADED217EBB76000DFEB1A /* WLSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = C91ADECC17EBB76000DFEB1A /* WLSegment.m */; };
-		C91ADED317EBB76000DFEB1A /* WLSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C91ADECE17EBB76000DFEB1A /* WLSegmentedControl.m */; };
-		C91ADED417EBB76000DFEB1A /* WLVerticalSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C91ADED017EBB76000DFEB1A /* WLVerticalSegmentedControl.m */; };
-		C91ADED817EBB7C600DFEB1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C91ADED717EBB7C600DFEB1A /* AppDelegate.m */; };
-		C91ADEDD17EBB7D600DFEB1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C91ADED917EBB7D600DFEB1A /* main.m */; };
-		C91ADEFC17EBBA6A00DFEB1A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91ADEFB17EBBA6A00DFEB1A /* Images.xcassets */; };
+		C91D003E1C40174500DB7078 /* WLSegmentedControl.h in Headers */ = {isa = PBXBuildFile; fileRef = C91ADECD17EBB76000DFEB1A /* WLSegmentedControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C91D003F1C40174500DB7078 /* WLHorizontalSegmentedControl.h in Headers */ = {isa = PBXBuildFile; fileRef = C91ADEC917EBB76000DFEB1A /* WLHorizontalSegmentedControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C91D00401C40174500DB7078 /* WLVerticalSegmentedControl.h in Headers */ = {isa = PBXBuildFile; fileRef = C91ADECF17EBB76000DFEB1A /* WLVerticalSegmentedControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C91D00411C40174500DB7078 /* WLSegment.h in Headers */ = {isa = PBXBuildFile; fileRef = C91ADECB17EBB76000DFEB1A /* WLSegment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C91D00641C401A9B00DB7078 /* WLSegmentedControls.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C91D002D1C40168800DB7078 /* WLSegmentedControls.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C91D00681C401AA800DB7078 /* WLSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C91ADECE17EBB76000DFEB1A /* WLSegmentedControl.m */; };
+		C91D00691C401AA800DB7078 /* WLHorizontalSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C91ADECA17EBB76000DFEB1A /* WLHorizontalSegmentedControl.m */; };
+		C91D006A1C401AA800DB7078 /* WLVerticalSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C91ADED017EBB76000DFEB1A /* WLVerticalSegmentedControl.m */; };
+		C91D006B1C401AA800DB7078 /* WLSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = C91ADECC17EBB76000DFEB1A /* WLSegment.m */; };
+		C91D00701C401ADC00DB7078 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C91D006D1C401ADC00DB7078 /* AppDelegate.m */; };
+		C91D00711C401ADC00DB7078 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C91D006F1C401ADC00DB7078 /* ViewController.m */; };
+		C91D00731C401AEF00DB7078 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91D00721C401AEF00DB7078 /* Assets.xcassets */; };
+		C91D00761C401AF600DB7078 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C91D00741C401AF600DB7078 /* LaunchScreen.storyboard */; };
+		C91D00791C401AFF00DB7078 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C91D00771C401AFF00DB7078 /* Main.storyboard */; };
+		C91D007D1C401B3A00DB7078 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C91D007C1C401B3A00DB7078 /* main.m */; };
+		C91D007F1C401B7900DB7078 /* WLSegmentedControls.h in Headers */ = {isa = PBXBuildFile; fileRef = C91D007E1C401B7900DB7078 /* WLSegmentedControls.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C91D00651C401A9B00DB7078 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C91D002C1C40168800DB7078;
+			remoteInfo = WLSegmentedControls;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C91D00671C401A9B00DB7078 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C91D00641C401A9B00DB7078 /* WLSegmentedControls.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		1D6058910D05DD3D006BFB54 /* WLSegmentedControls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WLSegmentedControls.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C91ADEC917EBB76000DFEB1A /* WLHorizontalSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WLHorizontalSegmentedControl.h; path = WLSegmentedControls/WLHorizontalSegmentedControl.h; sourceTree = SOURCE_ROOT; };
 		C91ADECA17EBB76000DFEB1A /* WLHorizontalSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WLHorizontalSegmentedControl.m; path = WLSegmentedControls/WLHorizontalSegmentedControl.m; sourceTree = SOURCE_ROOT; };
 		C91ADECB17EBB76000DFEB1A /* WLSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WLSegment.h; path = WLSegmentedControls/WLSegment.h; sourceTree = SOURCE_ROOT; };
@@ -26,18 +58,32 @@
 		C91ADECE17EBB76000DFEB1A /* WLSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WLSegmentedControl.m; path = WLSegmentedControls/WLSegmentedControl.m; sourceTree = SOURCE_ROOT; };
 		C91ADECF17EBB76000DFEB1A /* WLVerticalSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WLVerticalSegmentedControl.h; path = WLSegmentedControls/WLVerticalSegmentedControl.h; sourceTree = SOURCE_ROOT; };
 		C91ADED017EBB76000DFEB1A /* WLVerticalSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WLVerticalSegmentedControl.m; path = WLSegmentedControls/WLVerticalSegmentedControl.m; sourceTree = SOURCE_ROOT; };
-		C91ADED617EBB7C600DFEB1A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = WLSegmentedControls/AppDelegate.h; sourceTree = "<group>"; };
-		C91ADED717EBB7C600DFEB1A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = WLSegmentedControls/AppDelegate.m; sourceTree = "<group>"; };
-		C91ADED917EBB7D600DFEB1A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = WLSegmentedControls/main.m; sourceTree = "<group>"; };
-		C91ADEDB17EBB7D600DFEB1A /* WLSegmentedControls_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WLSegmentedControls_Prefix.pch; path = WLSegmentedControls/WLSegmentedControls_Prefix.pch; sourceTree = "<group>"; };
-		C91ADEDC17EBB7D600DFEB1A /* WLSegmentedControls-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "WLSegmentedControls-Info.plist"; path = "WLSegmentedControls/WLSegmentedControls-Info.plist"; sourceTree = "<group>"; };
-		C91ADEFB17EBBA6A00DFEB1A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = WLSegmentedControls/Images.xcassets; sourceTree = "<group>"; };
+		C91D002D1C40168800DB7078 /* WLSegmentedControls.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WLSegmentedControls.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C91D003A1C4016BD00DB7078 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = WLSegmentedControls/Info.plist; sourceTree = "<group>"; };
+		C91D00471C40196400DB7078 /* WLSegmentedControlsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WLSegmentedControlsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C91D006C1C401ADC00DB7078 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Demo/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		C91D006D1C401ADC00DB7078 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Demo/AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		C91D006E1C401ADC00DB7078 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = Demo/ViewController.h; sourceTree = SOURCE_ROOT; };
+		C91D006F1C401ADC00DB7078 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = Demo/ViewController.m; sourceTree = SOURCE_ROOT; };
+		C91D00721C401AEF00DB7078 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Demo/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		C91D00751C401AF600DB7078 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Demo/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
+		C91D00781C401AFF00DB7078 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Demo/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		C91D007A1C401B0F00DB7078 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Demo/Info.plist; sourceTree = SOURCE_ROOT; };
+		C91D007C1C401B3A00DB7078 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Demo/main.m; sourceTree = SOURCE_ROOT; };
+		C91D007E1C401B7900DB7078 /* WLSegmentedControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WLSegmentedControls.h; path = WLSegmentedControls/WLSegmentedControls.h; sourceTree = "<group>"; };
 		C9802ABA18762657008F3605 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		C9802ABB18762657008F3605 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+		C91D00291C40168800DB7078 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C91D00441C40196400DB7078 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -50,7 +96,8 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* WLSegmentedControls.app */,
+				C91D002D1C40168800DB7078 /* WLSegmentedControls.framework */,
+				C91D00471C40196400DB7078 /* WLSegmentedControlsDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -58,39 +105,19 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				C9802ABB18762657008F3605 /* README.md */,
+				C9802ABA18762657008F3605 /* LICENSE */,
 				C91ADEF517EBBA1400DFEB1A /* WLSegmentedControls */,
-				C91ADED517EBB7B800DFEB1A /* Demo */,
+				C91D00481C40196400DB7078 /* Demo */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
 		};
-		29B97315FDCFA39411CA2CEA /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				C91ADED917EBB7D600DFEB1A /* main.m */,
-				C91ADEDB17EBB7D600DFEB1A /* WLSegmentedControls_Prefix.pch */,
-				C91ADEDC17EBB7D600DFEB1A /* WLSegmentedControls-Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C91ADED517EBB7B800DFEB1A /* Demo */ = {
-			isa = PBXGroup;
-			children = (
-				C91ADED617EBB7C600DFEB1A /* AppDelegate.h */,
-				C91ADED717EBB7C600DFEB1A /* AppDelegate.m */,
-				C91ADEFB17EBBA6A00DFEB1A /* Images.xcassets */,
-				29B97315FDCFA39411CA2CEA /* Supporting Files */,
-			);
-			name = Demo;
-			sourceTree = "<group>";
-		};
 		C91ADEF517EBBA1400DFEB1A /* WLSegmentedControls */ = {
 			isa = PBXGroup;
 			children = (
-				C9802ABB18762657008F3605 /* README.md */,
-				C9802ABA18762657008F3605 /* LICENSE */,
+				C91D007E1C401B7900DB7078 /* WLSegmentedControls.h */,
 				C91ADECD17EBB76000DFEB1A /* WLSegmentedControl.h */,
 				C91ADECE17EBB76000DFEB1A /* WLSegmentedControl.m */,
 				C91ADEC917EBB76000DFEB1A /* WLHorizontalSegmentedControl.h */,
@@ -99,21 +126,70 @@
 				C91ADED017EBB76000DFEB1A /* WLVerticalSegmentedControl.m */,
 				C91ADECB17EBB76000DFEB1A /* WLSegment.h */,
 				C91ADECC17EBB76000DFEB1A /* WLSegment.m */,
+				C91D003C1C4016C900DB7078 /* Supporting Files */,
 			);
 			name = WLSegmentedControls;
 			sourceTree = "<group>";
 		};
+		C91D003C1C4016C900DB7078 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C91D003A1C4016BD00DB7078 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C91D00481C40196400DB7078 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				C91D006C1C401ADC00DB7078 /* AppDelegate.h */,
+				C91D006D1C401ADC00DB7078 /* AppDelegate.m */,
+				C91D006E1C401ADC00DB7078 /* ViewController.h */,
+				C91D006F1C401ADC00DB7078 /* ViewController.m */,
+				C91D00721C401AEF00DB7078 /* Assets.xcassets */,
+				C91D00741C401AF600DB7078 /* LaunchScreen.storyboard */,
+				C91D00771C401AFF00DB7078 /* Main.storyboard */,
+				C91D00491C40196400DB7078 /* Supporting Files */,
+			);
+			name = Demo;
+			path = WLSegmentedControlsDemo;
+			sourceTree = "<group>";
+		};
+		C91D00491C40196400DB7078 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C91D007A1C401B0F00DB7078 /* Info.plist */,
+				C91D007C1C401B3A00DB7078 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		C91D002A1C40168800DB7078 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C91D003F1C40174500DB7078 /* WLHorizontalSegmentedControl.h in Headers */,
+				C91D00401C40174500DB7078 /* WLVerticalSegmentedControl.h in Headers */,
+				C91D003E1C40174500DB7078 /* WLSegmentedControl.h in Headers */,
+				C91D00411C40174500DB7078 /* WLSegment.h in Headers */,
+				C91D007F1C401B7900DB7078 /* WLSegmentedControls.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* WLSegmentedControls */ = {
+		C91D002C1C40168800DB7078 /* WLSegmentedControls */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "WLSegmentedControls" */;
+			buildConfigurationList = C91D00371C40168800DB7078 /* Build configuration list for PBXNativeTarget "WLSegmentedControls" */;
 			buildPhases = (
-				1D60588D0D05DD3D006BFB54 /* Resources */,
-				1D60588E0D05DD3D006BFB54 /* Sources */,
-				1D60588F0D05DD3D006BFB54 /* Frameworks */,
-				C9D4CF3B11FDBE5900E09B43 /* ShellScript */,
+				C91D00281C40168800DB7078 /* Sources */,
+				C91D00291C40168800DB7078 /* Frameworks */,
+				C91D002A1C40168800DB7078 /* Headers */,
+				C91D002B1C40168800DB7078 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -121,7 +197,26 @@
 			);
 			name = WLSegmentedControls;
 			productName = WLSegmentedControls;
-			productReference = 1D6058910D05DD3D006BFB54 /* WLSegmentedControls.app */;
+			productReference = C91D002D1C40168800DB7078 /* WLSegmentedControls.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C91D00461C40196400DB7078 /* WLSegmentedControlsDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C91D005B1C40196400DB7078 /* Build configuration list for PBXNativeTarget "WLSegmentedControlsDemo" */;
+			buildPhases = (
+				C91D00431C40196400DB7078 /* Sources */,
+				C91D00441C40196400DB7078 /* Frameworks */,
+				C91D00451C40196400DB7078 /* Resources */,
+				C91D00671C401A9B00DB7078 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C91D00661C401A9B00DB7078 /* PBXTargetDependency */,
+			);
+			name = WLSegmentedControlsDemo;
+			productName = WLSegmentedControlsDemo;
+			productReference = C91D00471C40196400DB7078 /* WLSegmentedControlsDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -131,9 +226,18 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = Moke;
+				TargetAttributes = {
+					C91D002C1C40168800DB7078 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					C91D00461C40196400DB7078 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "WLSegmentedControls" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -141,116 +245,101 @@
 				Japanese,
 				French,
 				German,
+				Base,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* WLSegmentedControls */,
+				C91D002C1C40168800DB7078 /* WLSegmentedControls */,
+				C91D00461C40196400DB7078 /* WLSegmentedControlsDemo */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+		C91D002B1C40168800DB7078 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C91ADEFC17EBBA6A00DFEB1A /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C91D00451C40196400DB7078 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C91D00791C401AFF00DB7078 /* Main.storyboard in Resources */,
+				C91D00761C401AF600DB7078 /* LaunchScreen.storyboard in Resources */,
+				C91D00731C401AEF00DB7078 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		C9D4CF3B11FDBE5900E09B43 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# appledoc -p \"$PROJECT_NAME\" -i \"$SRCROOT\" -o \"$BUILD_DIR/doc\" --xhtml --docset";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+		C91D00281C40168800DB7078 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C91ADED217EBB76000DFEB1A /* WLSegment.m in Sources */,
-				C91ADED817EBB7C600DFEB1A /* AppDelegate.m in Sources */,
-				C91ADED117EBB76000DFEB1A /* WLHorizontalSegmentedControl.m in Sources */,
-				C91ADED317EBB76000DFEB1A /* WLSegmentedControl.m in Sources */,
-				C91ADEDD17EBB7D600DFEB1A /* main.m in Sources */,
-				C91ADED417EBB76000DFEB1A /* WLVerticalSegmentedControl.m in Sources */,
+				C91D006B1C401AA800DB7078 /* WLSegment.m in Sources */,
+				C91D00681C401AA800DB7078 /* WLSegmentedControl.m in Sources */,
+				C91D00691C401AA800DB7078 /* WLHorizontalSegmentedControl.m in Sources */,
+				C91D006A1C401AA800DB7078 /* WLVerticalSegmentedControl.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C91D00431C40196400DB7078 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C91D00711C401ADC00DB7078 /* ViewController.m in Sources */,
+				C91D007D1C401B3A00DB7078 /* main.m in Sources */,
+				C91D00701C401ADC00DB7078 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		C91D00661C401A9B00DB7078 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C91D002C1C40168800DB7078 /* WLSegmentedControls */;
+			targetProxy = C91D00651C401A9B00DB7078 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C91D00741C401AF600DB7078 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C91D00751C401AF600DB7078 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		C91D00771C401AFF00DB7078 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C91D00781C401AFF00DB7078 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
-		1D6058940D05DD3E006BFB54 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				COPY_PHASE_STRIP = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = WLSegmentedControls/WLSegmentedControls_Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "WLSegmentedControls/WLSegmentedControls-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.moke.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = WLSegmentedControls;
-			};
-			name = Debug;
-		};
-		1D6058950D05DD3E006BFB54 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				COPY_PHASE_STRIP = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = WLSegmentedControls/WLSegmentedControls_Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "WLSegmentedControls/WLSegmentedControls-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.moke.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = WLSegmentedControls;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = YES;
-				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
-				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				GCC_WARN_STRICT_SELECTOR_MATCH = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CFLAGS = (
-					"-Wall",
-					"-Wextra",
-					"-Wno-unused-parameter",
-				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -261,42 +350,206 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = YES;
-				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
-				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_WARN_STRICT_SELECTOR_MATCH = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				OTHER_CFLAGS = (
-					"-Wall",
-					"-Wextra",
-					"-Wno-unused-parameter",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C91D00381C40168800DB7078 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = WLSegmentedControls/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.moke.WLSegmentedControls;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C91D00391C40168800DB7078 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = WLSegmentedControls/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.moke.WLSegmentedControls;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C91D005C1C40196400DB7078 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Demo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.moke.WLSegmentedControlsDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C91D005D1C40196400DB7078 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Demo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.moke.WLSegmentedControlsDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "WLSegmentedControls" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1D6058940D05DD3E006BFB54 /* Debug */,
-				1D6058950D05DD3E006BFB54 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "WLSegmentedControls" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C91D00371C40168800DB7078 /* Build configuration list for PBXNativeTarget "WLSegmentedControls" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C91D00381C40168800DB7078 /* Debug */,
+				C91D00391C40168800DB7078 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C91D005B1C40196400DB7078 /* Build configuration list for PBXNativeTarget "WLSegmentedControlsDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C91D005C1C40196400DB7078 /* Debug */,
+				C91D005D1C40196400DB7078 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
