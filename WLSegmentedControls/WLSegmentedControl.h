@@ -6,7 +6,8 @@
 //  Copyright © 2016 Moke. All rights reserved.
 //
 
-@import UIKit;
+// @import UIKit; //TODO: Use of '@import' when modules are disabled
+#import <UIKit/UIKit.h>
 #import "WLSegment.h"
 
 @interface WLSegmentedControl : UIControl {
