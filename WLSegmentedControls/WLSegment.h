@@ -6,7 +6,6 @@
 //  Copyright © 2016 Moke. All rights reserved.
 //
 
-// @import UIKit; //TODO: Use of '@import' when modules are disabled
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger, WLSegmentStyle) {
