@@ -6,7 +6,7 @@
 //  Copyright © 2016 Moke. All rights reserved.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 #import "WLSegment.h"
 
 @interface WLSegmentedControl : UIControl {
