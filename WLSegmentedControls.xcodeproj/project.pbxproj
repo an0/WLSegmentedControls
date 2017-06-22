@@ -152,7 +152,7 @@
 				C91D00491C40196400DB7078 /* Supporting Files */,
 			);
 			name = Demo;
-			path = WLSegmentedControlsDemo;
+			path = Demo;
 			sourceTree = "<group>";
 		};
 		C91D00491C40196400DB7078 /* Supporting Files */ = {
