@@ -10,7 +10,7 @@
 #import "WLSegment.h"
 
 @interface WLSegmentedControl : UIControl {
-	NSMutableArray *_segments;
+    NSMutableArray *_segments;
 }
 
 /**
@@ -22,9 +22,9 @@
  @param selectedBackgroundImages Nil, or a non-empty array of UIImage objects which is used as backgroundImages for segments in selected state. If nil, normal background images, if set, are also used for selected state. If not nil, backgroundImages must not be nil, and the array must be of the same length as items array and each element in this array must correspond to the element at the same index in items array.
  @return A WLSegmentedControl object or nil if there was a problem in initializing the object.
  */
-- (id)initWithItems:(NSArray *)items selectedItems:(NSArray *)selectedItems backgroundImages:(NSArray *)backgroundImages selectedBackgroundImages:(NSArray *)selectedBackgroundImages;
-- (id)initWithItems:(NSArray *)items;
-- (id)initWithFrame:(CGRect)frame __attribute__((unavailable("Use '-initWithItems:…' instead.")));
+- (instancetype)initWithItems:(NSArray *)items selectedItems:(NSArray *)selectedItems backgroundImages:(NSArray *)backgroundImages selectedBackgroundImages:(NSArray *)selectedBackgroundImages;
+- (instancetype)initWithItems:(NSArray *)items;
+- (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
 
 // Managing Segment Content
 - (void)setImage:(UIImage *)image forSegmentAtIndex:(NSUInteger)segment;
