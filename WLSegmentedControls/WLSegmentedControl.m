@@ -123,13 +123,13 @@
     if ([_selectedSegmentIndice isEqualToIndexSet:indexSet]) return;
     
     [_selectedSegmentIndice enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
-        WLSegment *selectedSegment = _segments[idx];
+        WLSegment *selectedSegment = self->_segments[idx];
         selectedSegment.selected = NO;        
         [self sendSubviewToBack:selectedSegment];
     }];
 
     [indexSet enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
-        WLSegment *segmentToSelect = _segments[idx];
+        WLSegment *segmentToSelect = self->_segments[idx];
         segmentToSelect.selected = YES;
         [self bringSubviewToFront:segmentToSelect];
     }];

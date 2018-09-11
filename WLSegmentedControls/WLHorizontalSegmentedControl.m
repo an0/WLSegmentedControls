@@ -25,7 +25,7 @@
             }
             [self addSubview:segment];
             [segment addTarget:self action:@selector(_didTapItem:) forControlEvents:UIControlEventTouchUpInside];
-            [_segments addObject:segment];
+            [self->_segments addObject:segment];
 
             segment.translatesAutoresizingMaskIntoConstraints = NO;
             NSDictionary *viewDict = NSDictionaryOfVariableBindings(segment);

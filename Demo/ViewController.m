@@ -66,8 +66,8 @@
                 [text appendString:@" on "];
             }
             [_hSeg.selectedSegmentIndice enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
-                [text appendString:[_hSeg titleForSegmentAtIndex:idx]];
-                if (idx != _hSeg.selectedSegmentIndice.lastIndex) {
+                [text appendString:[self->_hSeg titleForSegmentAtIndex:idx]];
+                if (idx != self->_hSeg.selectedSegmentIndice.lastIndex) {
                     [text appendString:@", "];
                 }
             }];
